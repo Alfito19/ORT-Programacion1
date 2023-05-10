@@ -1,0 +1,29 @@
+/* Colores: 
+Verde nav: #afc957
+naranja abajo nav: #fe9f79
+naranja agregar reclamo: #c49b51
+naranja reclamos ingresados: #c17650
+Verde atras del texto empresas: #38cb20
+verde agregar empresa: #99f996
+*/
+*{
+    margin: 0;
+    /* background-color:#afc957; */
+}
+nav{
+    background-color:#afc957;
+}
+nav ul li{
+    display:inline-block;
+    list-style: none;
+    margin: 0px 10px;
+}
+nav ul li a{
+    color:#117500;
+}
+nav ul li img{
+    width: 100px;
+}
+#lupabusqueda{
+    width: 10px;
+}

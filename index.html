@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <title>P1 - Obl. 1</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="shortcut icon" href="img/Logo-mini.png">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><img src="img/Logo.png" alt="Logo"></li>
+            <li><a href="#">Principal</a></li>
+            <li><a href="#" >Ver Reclamos</a></li>
+            <li><a href="#" >Estadísticas</a></li>
+            <li><a href="#" >Agregar Empresa</a></li>
+            <li><form><input type="text" placeholder=""><button><img src="img/Icono de busqueda.png" id="lupabusqueda"></button></form></li>
+        </ul>
+    </nav>
+    <main>
+        <section>
+            <h1>Sitio para la gestión de reclamos</h1>
+            <h2>Este sitio permite ingresar reclamos o quejas y realizar diversas consultas.</h2>
+            <p>Sitio desarrollado en el curso de Programación I - 1er semestre 2023 - Universidad ORT Uruguay por:</p>
+            <p><img src="img/Foto Alfonso Saizar.jpg" alt="Alfonso"> Alfonso Saizar - 306859</p>
+            <button>Agrega tu reclamo aquí</button>
+        </section>
+        <section>
+            <h2>Agregar Reclamo</h2>
+            <form>Nombre <input type="text" placeholder="Tu nombre..."></form>
+            <form>Empresa
+                <select name="empresa">
+                    <option>TodoViajes SA</option>
+                </select>
+            </form>
+            <form>Reclamo: <input type="text" placeholder="El título es..."></form>
+            <textarea type="text">y tu reclamo es...</textarea><br>
+            <Button>Agregar</Button>
+        </section>
+        <section>
+            <h2>Reclamos ingresados (los más recientes primero)</h2>
+            <article>
+                <h3>Reclamo No. 2</h3>
+                <p>Anónimo: ¡Perdí la valija!</p>
+                <p>Empresa: TodoViajes SA</p>
+                <p>Viajé por su empresa y la valija no llegó.</p>
+                <p><button>¡A mi también me pasó</button>Contador 3</p>
+            </article>
+            <article>
+                <h3>Reclamo No. 1</h3>
+                <p>Luis Pérez: Pasaje muy caro</p>
+                <p>Empresa: TodoViajes SA</p>
+                <p>El pasaje a BsAs está muy caro, comparé con otras compañías y el precio de ustedes es más del doble. Además las otras empresas ofrecen catering.</p>
+                <p><button>¡A mi también me pasó</button>Contador 1</p>
+            </article>
+        </section>
+        <section>
+            <article>
+                <h2>Estadísticas</h2>
+                <h3>Empresas Seleccionadas</h3>
+                <button>A</button><button>T</button><button>*</button>
+                <form><p><input type="radio" name="ingresos">Orden de nombre creciente<input type="radio" name="ingresos">Orden de nombre decreciente</p></form>
+                <!-- Orden nombre creciente / Orden nombre decreciente -->
+                <table>
+                    <tr>
+                        <td>Empresas que empiezan con T</td>
+                    </tr>
+                    <tr>
+                        <td>Nombre</td>
+                        <td>Dirección</td>
+                        <td>Rubro</td>
+                        <td>Cantidad</td>
+                    </tr>
+                    <tr>
+                        <td>TodoViajes SA</td>
+                        <td>Av Italia 51515</td>
+                        <td>Viajes</td>
+                        <td>4</td>
+                    </tr>
+                </table>
+            </article>
+            <article>
+                <h2>Información General</h2>
+                <p>El promedio de las cantidades considerando todos los reclamos de todas las empresas es: 4</p>
+                <p>Total de empresas registradas: 2</p>
+            </article>
+            <article>
+                <h2>Empresas sin Reclamos</h2>
+                <ul>
+                    <li>Alfa (18 de Julio 12345) Rubro: Muebles</li>
+                </ul>
+            </article>
+            <article>
+                <h2>Rubros con máxima cantidad de reclamos</h2>
+                <ul>
+                    <li>Viajes: cantidad 4</li>
+                </ul>
+            </article>
+        </section>
+        <section>
+            <h2>Agregar Empresa</h2>
+            <h3>Datos:</h3>
+            <form>Nombre<input type="text" placeholder=""></form>
+            <form>Dirección<input type="text" placeholder=""></form>
+            <form>Rubro
+                <select name="rubro">
+                    <option>Sin datos</option>
+                </select>
+            </form>
+            <button>Agregar</button>
+        </section>
+    </main>
+</body>
+</html>
