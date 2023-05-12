@@ -1,3 +1,5 @@
+/* Alfonso Saizar - 305968 */
+
 /* Colores: 
 Verde nav: #afc957
 naranja abajo nav: #fe9f79
@@ -8,15 +10,40 @@ verde agregar empresa: #99f996
 */
 *{
     margin: 0;
-    /* background-color:#afc957; */
+    font-family: Arial, sans-serif;
 }
-nav{
+body{
     background-color:#afc957;
+
+}
+h1{
+    margin: 0px 0px 15px 0px;
+    font-size: 25px;
+}
+h2{
+    font-weight: 700;
+    font-size: 20px;
+    margin: 0px 0px 15px 0px;
+}
+h3{
+    margin: 15px 0px;
+    font-size: 15px;
+}
+p{
+    margin: 0px 0px 15px 0px;
+}
+/* Inicio NAV */
+nav{
+    width: 100%;
+}
+nav ul{
+    display:flex;
+    align-items: center;
 }
 nav ul li{
     display:inline-block;
     list-style: none;
-    margin: 0px 10px;
+    margin: 0px 20px;
 }
 nav ul li a{
     color:#117500;
@@ -27,3 +54,63 @@ nav ul li img{
 #lupabusqueda{
     width: 10px;
 }
+/* Fin NAV */
+/* Inicio Principal */
+#section_principal{
+    background-color:#fe9f79;
+    padding:5px;
+}
+.button_principal{
+    display: flex;
+    justify-content: center;
+    margin:10px
+}
+#section_principal button{
+    background: rgb(175,201,87);
+    background: linear-gradient(180deg, rgba(175,201,87,1) 0%, rgba(254,159,121,1) 100%);
+    justify-content: center;
+    align-items: center;
+    padding: 15px 20px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 20px;
+}
+#section_principal img{
+    width: 30px;
+}
+/* Fin Principal */
+/* Inicio Agregar Reclamos */
+#section_agregar_reclamos{
+    background-color: #c49b51;
+    padding: 5px;
+
+}
+
+
+/* Fin Agregar Reclamos */
+/* Inicio Ver Reclamos */
+#section_ver_reclamos{
+    margin: 15px 0px 0px 5px;
+    background-color: #c17650;
+}
+.reclamo{
+    border:solid 2px black;
+    border-radius: 15px;
+    background-color: white;
+    margin: 0px 50px;
+    padding: 10px 300px;
+
+}
+/* Fin Ver Reclamos */
+/* Inicio Estadisticas */
+#section_estadisticas{
+    margin: 15px 5px 0px 5px;
+    background-color:#c49b51;
+}
+/* Fin Estadisticas */
+/* Inicio Agregar empresa */
+#section_agregar_empresa{
+    margin: 15px 5px 3px 5px;
+    background-color: #99f996;
+}
+/* Fin Agregar empresa */

@@ -1,3 +1,4 @@
+<!-- Alfonso Saizar - 305968 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,51 +13,64 @@
     <nav>
         <ul>
             <li><img src="img/Logo.png" alt="Logo"></li>
-            <li><a href="#">Principal</a></li>
-            <li><a href="#" >Ver Reclamos</a></li>
-            <li><a href="#" >Estadísticas</a></li>
-            <li><a href="#" >Agregar Empresa</a></li>
-            <li><form><input type="text" placeholder=""><button><img src="img/Icono de busqueda.png" id="lupabusqueda"></button></form></li>
+            <li><a href="#section_principal">Principal</a></li>
+            <li><a href="#section_ver_reclamos" >Ver Reclamos</a></li>
+            <li><a href="#section_estadisticas" >Estadísticas</a></li>
+            <li><a href="#section_agregar_empresa" >Agregar Empresa</a></li>
+            <li><form><input type="text" placeholder="" maxlength="30"><button><img src="img/Icono de busqueda.png" id="lupabusqueda"></button></form></li>
         </ul>
     </nav>
     <main>
-        <section>
-            <h1>Sitio para la gestión de reclamos</h1>
-            <h2>Este sitio permite ingresar reclamos o quejas y realizar diversas consultas.</h2>
-            <p>Sitio desarrollado en el curso de Programación I - 1er semestre 2023 - Universidad ORT Uruguay por:</p>
-            <p><img src="img/Foto Alfonso Saizar.jpg" alt="Alfonso"> Alfonso Saizar - 306859</p>
-            <button>Agrega tu reclamo aquí</button>
+        <!-- Inicio "Principal" -->
+        <section id="section_principal">
+            <div class="principal">
+                <h1>Sitio para la gestión de reclamos</h1>
+                <h2>Este sitio permite ingresar reclamos o quejas y realizar diversas consultas.</h2>
+                <p>Sitio desarrollado en el curso de Programación I - 1er semestre 2023 - Universidad ORT Uruguay por:</p>
+                <p><a href="img/Foto Alfonso Saizar.jpg"><img src="img/Foto Alfonso Saizar.jpg" alt="Alfonso"></a> Alfonso Saizar - 306859</p>
+                <div class="button_principal">
+                    <button>Agrega tu reclamo aquí</button>
+                </div>
+            </div>
         </section>
-        <section>
+        <!-- Fin "Principal" -->
+        <!-- Inicio "Ver reclamos" -->
+        <section id="section_agregar_reclamos">
             <h2>Agregar Reclamo</h2>
-            <form>Nombre <input type="text" placeholder="Tu nombre..."></form>
+            <form>Nombre <input type="text" placeholder="Tu nombre..." maxlength="30"></form>
             <form>Empresa
                 <select name="empresa">
                     <option>TodoViajes SA</option>
                 </select>
             </form>
-            <form>Reclamo: <input type="text" placeholder="El título es..."></form>
+            <form>Reclamo: <input type="text" placeholder="El título es..." maxlength="30"></form>
             <textarea type="text">y tu reclamo es...</textarea><br>
             <Button>Agregar</Button>
         </section>
-        <section>
+        <section id="section_ver_reclamos">
             <h2>Reclamos ingresados (los más recientes primero)</h2>
             <article>
                 <h3>Reclamo No. 2</h3>
-                <p>Anónimo: ¡Perdí la valija!</p>
-                <p>Empresa: TodoViajes SA</p>
-                <p>Viajé por su empresa y la valija no llegó.</p>
-                <p><button>¡A mi también me pasó</button>Contador 3</p>
+                <div class="reclamo">
+                    <p>Anónimo: ¡Perdí la valija!</p>
+                    <p>Empresa: TodoViajes SA</p>
+                    <p>Viajé por su empresa y la valija no llegó.</p>
+                    <p><button>¡A mi también me pasó!</button>Contador 3</p>
+                </div>
             </article>
             <article>
                 <h3>Reclamo No. 1</h3>
-                <p>Luis Pérez: Pasaje muy caro</p>
-                <p>Empresa: TodoViajes SA</p>
-                <p>El pasaje a BsAs está muy caro, comparé con otras compañías y el precio de ustedes es más del doble. Además las otras empresas ofrecen catering.</p>
-                <p><button>¡A mi también me pasó</button>Contador 1</p>
+                <div class="reclamo">
+                    <p>Luis Pérez: Pasaje muy caro</p>
+                    <p>Empresa: TodoViajes SA</p>
+                    <p>El pasaje a BsAs está muy caro, comparé con otras compañías y el precio de ustedes es más del doble. Además las otras empresas ofrecen catering.</p>
+                    <p><button>¡A mi también me pasó!</button>Contador 1</p>
+                </div>
             </article>
         </section>
-        <section>
+        <!-- Fin "Ver reclamos" -->
+        <!-- Inicio "Estadisticas" -->
+        <section id="section_estadisticas">
             <article>
                 <h2>Estadísticas</h2>
                 <h3>Empresas Seleccionadas</h3>
@@ -99,11 +113,13 @@
                 </ul>
             </article>
         </section>
-        <section>
+        <!-- Fin "Estadisticas" -->
+        <!-- Inicio "Agregar empresa" -->
+        <section id="section_agregar_empresa">
             <h2>Agregar Empresa</h2>
             <h3>Datos:</h3>
-            <form>Nombre<input type="text" placeholder=""></form>
-            <form>Dirección<input type="text" placeholder=""></form>
+            <form>Nombre<input type="text" placeholder="" maxlength="30"></form>
+            <form>Dirección<input type="text" placeholder="" maxlength="30"></form>
             <form>Rubro
                 <select name="rubro">
                     <option>Sin datos</option>
@@ -111,6 +127,7 @@
             </form>
             <button>Agregar</button>
         </section>
+        <!-- Fin "Agregar empresa" -->
     </main>
 </body>
 </html>
