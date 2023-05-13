@@ -37,34 +37,43 @@
         <!-- Inicio "Ver reclamos" -->
         <section id="section_agregar_reclamos">
             <h2>Agregar Reclamo</h2>
-            <form>Nombre <input type="text" placeholder="Tu nombre..." maxlength="30"></form>
-            <form>Empresa
-                <select name="empresa">
-                    <option>TodoViajes SA</option>
-                </select>
-            </form>
-            <form>Reclamo: <input type="text" placeholder="El título es..." maxlength="30"></form>
-            <textarea type="text">y tu reclamo es...</textarea><br>
-            <Button>Agregar</Button>
+            <div class="agregar_reclamos">
+                <form>
+                    <label>Nombre </label>
+                    <input type="text" placeholder="Tu nombre..." maxlength="30">
+                </form>
+                <form>
+                    <label>Empresa</label>
+                    <select name="empresa">
+                        <option>TodoViajes SA</option>
+                    </select>
+                </form>
+                <form>
+                    <label>Reclamo: </label>
+                    <input type="text" placeholder="El título es..." maxlength="30">
+                </form>
+                <textarea type="text" rows="5" cols="70" placeholder="y tu reclamo es..."></textarea><br>
+                <Button>Agregar</Button>
+            </div>
         </section>
         <section id="section_ver_reclamos">
             <h2>Reclamos ingresados (los más recientes primero)</h2>
             <article>
                 <h3>Reclamo No. 2</h3>
                 <div class="reclamo">
-                    <p>Anónimo: ¡Perdí la valija!</p>
-                    <p>Empresa: TodoViajes SA</p>
+                    <p>Anónimo: <mark class="mark_naranja">¡Perdí la valija!</mark></p>
+                    <p>Empresa: <mark class="mark_verde">TodoViajes SA</mark></p>
                     <p>Viajé por su empresa y la valija no llegó.</p>
-                    <p><button>¡A mi también me pasó!</button>Contador 3</p>
+                    <p><button>¡A mi también me pasó!</button> Contador 3</p>
                 </div>
             </article>
             <article>
                 <h3>Reclamo No. 1</h3>
                 <div class="reclamo">
-                    <p>Luis Pérez: Pasaje muy caro</p>
-                    <p>Empresa: TodoViajes SA</p>
+                    <p>Luis Pérez: <mark class="mark_naranja">Pasaje muy caro</mark></p>
+                    <p>Empresa: <mark class="mark_verde">TodoViajes SA</mark></p>
                     <p>El pasaje a BsAs está muy caro, comparé con otras compañías y el precio de ustedes es más del doble. Además las otras empresas ofrecen catering.</p>
-                    <p><button>¡A mi también me pasó!</button>Contador 1</p>
+                    <p><button>¡A mi también me pasó!</button> Contador 1</p>
                 </div>
             </article>
         </section>
@@ -74,40 +83,44 @@
             <article>
                 <h2>Estadísticas</h2>
                 <h3>Empresas Seleccionadas</h3>
-                <button>A</button><button>T</button><button>*</button>
-                <form><p><input type="radio" name="ingresos">Orden de nombre creciente<input type="radio" name="ingresos">Orden de nombre decreciente</p></form>
-                <!-- Orden nombre creciente / Orden nombre decreciente -->
-                <table>
-                    <tr>
-                        <td>Empresas que empiezan con T</td>
-                    </tr>
-                    <tr>
-                        <td>Nombre</td>
-                        <td>Dirección</td>
-                        <td>Rubro</td>
-                        <td>Cantidad</td>
-                    </tr>
-                    <tr>
-                        <td>TodoViajes SA</td>
-                        <td>Av Italia 51515</td>
-                        <td>Viajes</td>
-                        <td>4</td>
-                    </tr>
-                </table>
+                <div class="seleccion_letra">
+                    <button>A</button><button>T</button><button>*</button>
+                </div>
+                <div class="ordenar_nombre">
+                    <form><p><input type="radio" name="ingresos">Orden de nombre creciente<input type="radio" name="ingresos">Orden de nombre decreciente</p></form>
+                    <!-- Orden nombre creciente / Orden nombre decreciente -->
+                </div>
+                <p id="center">Empresas que empiezan con T</p>
+                <div class="tabla_estadisticas">
+                    <table>
+                        <tr>
+                            <td id="tabla_titulos">Nombre</td>
+                            <td id="tabla_titulos">Dirección</td>
+                            <td id="tabla_titulos">Rubro</td>
+                            <td id="tabla_titulos">Cantidad</td>
+                        </tr>
+                        <tr>
+                            <td>TodoViajes SA</td>
+                            <td>Av Italia 51515</td>
+                            <td>Viajes</td>
+                            <td>4</td>
+                        </tr>
+                    </table>
+                </div>
             </article>
             <article>
-                <h2>Información General</h2>
+                <h3>Información General</h3>
                 <p>El promedio de las cantidades considerando todos los reclamos de todas las empresas es: 4</p>
                 <p>Total de empresas registradas: 2</p>
             </article>
-            <article>
-                <h2>Empresas sin Reclamos</h2>
+            <article class="empresas_sin_reclamos">
+                <h3>Empresas sin Reclamos</h3>
                 <ul>
                     <li>Alfa (18 de Julio 12345) Rubro: Muebles</li>
                 </ul>
             </article>
             <article>
-                <h2>Rubros con máxima cantidad de reclamos</h2>
+                <h3>Rubros con máxima cantidad de reclamos</h3>
                 <ul>
                     <li>Viajes: cantidad 4</li>
                 </ul>
@@ -117,15 +130,23 @@
         <!-- Inicio "Agregar empresa" -->
         <section id="section_agregar_empresa">
             <h2>Agregar Empresa</h2>
-            <h3>Datos:</h3>
-            <form>Nombre<input type="text" placeholder="" maxlength="30"></form>
-            <form>Dirección<input type="text" placeholder="" maxlength="30"></form>
-            <form>Rubro
-                <select name="rubro">
-                    <option>Sin datos</option>
-                </select>
-            </form>
-            <button>Agregar</button>
+                <h3>Datos:</h3>
+                <div class="agregar_empresa">
+                <form>
+                    <label>Nombre</label>
+                    <input type="text" placeholder="" maxlength="30">
+                </form>
+                <form>
+                    <label>Dirección</label>
+                    <input type="text" placeholder="" maxlength="30">
+                </form>
+                <form>Rubro
+                    <select name="rubro">
+                        <option>Sin datos</option>
+                    </select>
+                </form>
+                <button>Agregar</button>
+            </div>
         </section>
         <!-- Fin "Agregar empresa" -->
     </main>

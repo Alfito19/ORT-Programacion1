@@ -11,6 +11,7 @@ verde agregar empresa: #99f996
 *{
     margin: 0;
     font-family: Arial, sans-serif;
+    font-size: 15px;
 }
 body{
     background-color:#afc957;
@@ -27,10 +28,16 @@ h2{
 }
 h3{
     margin: 15px 0px;
-    font-size: 15px;
+    font-size: 17px;
 }
 p{
     margin: 0px 0px 15px 0px;
+}
+.mark_naranja{
+    background-color: #fe9f79;
+}
+.mark_verde{
+    background-color: #32cc30;
 }
 /* Inicio NAV */
 nav{
@@ -47,6 +54,9 @@ nav ul li{
 }
 nav ul li a{
     color:#117500;
+}
+nav ul li a:hover{
+    color:#fe9f79;
 }
 nav ul li img{
     width: 100px;
@@ -74,6 +84,7 @@ nav ul li img{
     border-radius: 20px;
     font-weight: 600;
     font-size: 20px;
+    cursor: pointer;
 }
 #section_principal img{
     width: 30px;
@@ -83,10 +94,18 @@ nav ul li img{
 #section_agregar_reclamos{
     background-color: #c49b51;
     padding: 5px;
-
 }
-
-
+.agregar_reclamos form{
+    display: grid;
+    grid-template-columns: 100px 300px auto;
+}
+.agregar_reclamos textarea{
+    margin: 0px 100px;
+}
+.agregar_reclamos button{
+    margin: 0px 100px;
+    cursor: pointer;
+}
 /* Fin Agregar Reclamos */
 /* Inicio Ver Reclamos */
 #section_ver_reclamos{
@@ -98,8 +117,10 @@ nav ul li img{
     border-radius: 15px;
     background-color: white;
     margin: 0px 50px;
-    padding: 10px 300px;
-
+    padding: 10px 0 10px 250px;
+}
+.reclamo button{
+    cursor: pointer;
 }
 /* Fin Ver Reclamos */
 /* Inicio Estadisticas */
@@ -107,10 +128,60 @@ nav ul li img{
     margin: 15px 5px 0px 5px;
     background-color:#c49b51;
 }
+.seleccion_letra,.tabla_estadisticas{
+    display:flex;
+    justify-content: center;
+}
+.seleccion_letra button{
+    margin:3px;
+    cursor: pointer;
+}
+.seleccion_letra button:active{
+    background-color: #32cc30;
+    border: solid 2px black;
+}
+.ordenar_nombre{
+    margin: 20px 0 10px 0;
+    display: flex;
+    justify-content: center;
+}
+.ordenar_nombre input{
+    margin: 0 10px;
+}
+#center{
+    text-align: center;
+    margin: 0;
+}
+table {
+    width: 80%;
+    border: 1px solid #000;
+    border-radius: 15px;
+    background-color: white;
+ }
+ td {
+    width: auto;
+    text-align: center;
+    vertical-align: center;
+    border: 2px solid #000;
+ }
+#tabla_titulos{
+    font-weight: 700;
+ }
+ .empresas_sin_reclamos li{
+    margin: 0 0 15px 0;
+ }
 /* Fin Estadisticas */
 /* Inicio Agregar empresa */
 #section_agregar_empresa{
     margin: 15px 5px 3px 5px;
     background-color: #99f996;
+}
+.agregar_empresa form{
+    display: grid;
+    grid-template-columns: 100px 300px auto;
+}
+.agregar_empresa button{
+    margin: 0px 100px;
+    cursor: pointer;
 }
 /* Fin Agregar empresa */
