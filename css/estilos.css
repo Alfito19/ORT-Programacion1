@@ -2,12 +2,13 @@
 
 /* Colores: 
 Verde nav: #afc957
-naranja abajo nav: #fe9f79
-naranja agregar reclamo: #c49b51
-naranja reclamos ingresados: #c17650
+Naranja abajo nav: #fe9f79
+Naranja agregar reclamo: #c49b51
+Naranja reclamos ingresados: #c17650
 Verde atras del texto empresas: #38cb20
 verde agregar empresa: #99f996
 */
+
 *{
     margin: 0;
     font-family: Arial, sans-serif;
@@ -35,6 +36,7 @@ h1,h2,h3,p,.empresas_sin_reclamos li{
 .mark_verde{
     background-color: #32cc30;
 }
+
 /* Inicio NAV */
 nav{
     width: 100%;
@@ -61,7 +63,8 @@ nav ul li img{
     width: 10px;
 }
 /* Fin NAV */
-/* Inicio Principal */
+
+/* Principal */
 #section_principal{
     background-color:#fe9f79;
     padding:5px;
@@ -76,6 +79,9 @@ nav ul li img{
     margin: 15px 0px 0px 5px;
     background-color: #c17650;
 }
+#num_reclamo{
+    margin: 15px 0px;
+}
 /* Estadisticas */
 #section_estadisticas{
     margin: 15px 5px 0px 5px;
@@ -86,11 +92,12 @@ nav ul li img{
     margin: 15px 5px 3px 5px;
     background-color: #99f996;
 }
-/* Ftts. in section */
+
 /* Foto Alfonso Saizar*/
 #section_principal img{
     width: 30px;
 }
+
 /* Boton agregar reclamo */
 .button_principal{
     display: flex;
@@ -108,6 +115,7 @@ nav ul li img{
     font-size: 20px;
     cursor: pointer;
 }
+
 /* Forms agregar empresa y agregar datos (label por un lado, input por otro) */
 .agregar_reclamos form,.agregar_empresa form{
     display: grid;
@@ -119,6 +127,7 @@ nav ul li img{
 .agregar_reclamos button,.agregar_empresa button,.reclamo button{
     cursor: pointer;
 }
+
 /* Texto de reclamo */
 .reclamo{
     border:solid 2px black;
@@ -127,6 +136,7 @@ nav ul li img{
     margin: 0px 50px;
     padding: 10px 0 10px 250px;
 }
+
 /* Tabla estadisticas */
 .seleccion_letra,.tabla_estadisticas,.ordenar_nombre{
     display:flex;
@@ -151,7 +161,7 @@ nav ul li img{
     margin: 0;
 }
 table {
-    width: 80%;
+    width: 90%;
     border: 1px solid #000;
     border-radius: 15px;
     background-color: white;
