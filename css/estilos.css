@@ -18,19 +18,15 @@ body{
 
 }
 h1{
-    margin: 0px 0px 15px 0px;
     font-size: 25px;
 }
 h2{
-    font-weight: 700;
     font-size: 20px;
-    margin: 0px 0px 15px 0px;
 }
 h3{
-    margin: 15px 0px;
     font-size: 17px;
 }
-p{
+h1,h2,h3,p,.empresas_sin_reclamos li{
     margin: 0px 0px 15px 0px;
 }
 .mark_naranja{
@@ -70,6 +66,32 @@ nav ul li img{
     background-color:#fe9f79;
     padding:5px;
 }
+/* Agregar Reclamos */
+#section_agregar_reclamos{
+    background-color: #c49b51;
+    padding: 5px;
+}
+/* Ver Reclamos */
+#section_ver_reclamos{
+    margin: 15px 0px 0px 5px;
+    background-color: #c17650;
+}
+/* Estadisticas */
+#section_estadisticas{
+    margin: 15px 5px 0px 5px;
+    background-color:#c49b51;
+}
+/* Agregar empresa */
+#section_agregar_empresa{
+    margin: 15px 5px 3px 5px;
+    background-color: #99f996;
+}
+/* Ftts. in section */
+/* Foto Alfonso Saizar*/
+#section_principal img{
+    width: 30px;
+}
+/* Boton agregar reclamo */
 .button_principal{
     display: flex;
     justify-content: center;
@@ -86,32 +108,18 @@ nav ul li img{
     font-size: 20px;
     cursor: pointer;
 }
-#section_principal img{
-    width: 30px;
-}
-/* Fin Principal */
-/* Inicio Agregar Reclamos */
-#section_agregar_reclamos{
-    background-color: #c49b51;
-    padding: 5px;
-}
-.agregar_reclamos form{
+/* Forms agregar empresa y agregar datos (label por un lado, input por otro) */
+.agregar_reclamos form,.agregar_empresa form{
     display: grid;
     grid-template-columns: 100px 300px auto;
 }
-.agregar_reclamos textarea{
+.agregar_reclamos textarea,.agregar_reclamos button,.agregar_empresa button{
     margin: 0px 100px;
 }
-.agregar_reclamos button{
-    margin: 0px 100px;
+.agregar_reclamos button,.agregar_empresa button,.reclamo button{
     cursor: pointer;
 }
-/* Fin Agregar Reclamos */
-/* Inicio Ver Reclamos */
-#section_ver_reclamos{
-    margin: 15px 0px 0px 5px;
-    background-color: #c17650;
-}
+/* Texto de reclamo */
 .reclamo{
     border:solid 2px black;
     border-radius: 15px;
@@ -119,16 +127,8 @@ nav ul li img{
     margin: 0px 50px;
     padding: 10px 0 10px 250px;
 }
-.reclamo button{
-    cursor: pointer;
-}
-/* Fin Ver Reclamos */
-/* Inicio Estadisticas */
-#section_estadisticas{
-    margin: 15px 5px 0px 5px;
-    background-color:#c49b51;
-}
-.seleccion_letra,.tabla_estadisticas{
+/* Tabla estadisticas */
+.seleccion_letra,.tabla_estadisticas,.ordenar_nombre{
     display:flex;
     justify-content: center;
 }
@@ -142,8 +142,6 @@ nav ul li img{
 }
 .ordenar_nombre{
     margin: 20px 0 10px 0;
-    display: flex;
-    justify-content: center;
 }
 .ordenar_nombre input{
     margin: 0 10px;
@@ -167,21 +165,5 @@ table {
 #tabla_titulos{
     font-weight: 700;
  }
- .empresas_sin_reclamos li{
-    margin: 0 0 15px 0;
- }
-/* Fin Estadisticas */
-/* Inicio Agregar empresa */
-#section_agregar_empresa{
-    margin: 15px 5px 3px 5px;
-    background-color: #99f996;
-}
-.agregar_empresa form{
-    display: grid;
-    grid-template-columns: 100px 300px auto;
-}
-.agregar_empresa button{
-    margin: 0px 100px;
-    cursor: pointer;
-}
-/* Fin Agregar empresa */
+
+/* Alfonso Saizar - 305968 */
