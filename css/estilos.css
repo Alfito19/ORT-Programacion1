@@ -79,7 +79,7 @@ nav ul li img{
     margin: 15px 0px 0px 5px;
     background-color: #c17650;
 }
-#num_reclamo{
+.num_reclamo{
     margin: 15px 0px;
 }
 /* Estadisticas */
@@ -166,13 +166,13 @@ table {
     border-radius: 15px;
     background-color: white;
  }
- td {
+td,th {
     width: auto;
     text-align: center;
     vertical-align: center;
     border: 2px solid #000;
  }
-#tabla_titulos{
+.tabla_titulos{
     font-weight: 700;
  }
 
