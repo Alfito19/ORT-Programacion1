@@ -10,13 +10,12 @@ verde agregar empresa: #99f996
 */
 
 *{
-    margin: 0;
     font-family: Arial, sans-serif;
     font-size: 15px;
+    margin: 0;    
 }
 body{
     background-color:#afc957;
-
 }
 h1{
     font-size: 25px;
@@ -119,9 +118,22 @@ nav ul li img{
 /* Forms agregar empresa y agregar datos (label por un lado, input por otro) */
 .agregar_reclamos form,.agregar_empresa form{
     display: grid;
-    grid-template-columns: 100px 300px auto;
+    grid-template-columns: 100px auto auto;
+    grid-template-areas: ". . ."
+    ". . ."
+    ". . ."
+    ". reclamo .";
 }
-.agregar_reclamos textarea,.agregar_reclamos button,.agregar_empresa button{
+.agregar_reclamos textarea{
+    grid-area: reclamo;
+}
+.agregar_reclamos input,.agregar_empresa input{
+    width: 292px;
+}
+.agregar_reclamos select,.agregar_empresa select{
+    width: 300px;
+}
+.agregar_reclamos button,.agregar_empresa button{
     margin: 0px 100px;
 }
 .agregar_reclamos button,.agregar_empresa button,.reclamo button{
@@ -146,7 +158,8 @@ nav ul li img{
     margin:3px;
     cursor: pointer;
 }
-.seleccion_letra button:active{
+/* .seleccion_letra button:active{ */
+.selected{
     background-color: #32cc30;
     border: solid 2px black;
 }
@@ -165,6 +178,7 @@ table {
     border: 1px solid #000;
     border-radius: 15px;
     background-color: white;
+    margin: 0px 0px 15px 0px;
  }
 td,th {
     width: auto;

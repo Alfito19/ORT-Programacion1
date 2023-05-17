@@ -16,7 +16,7 @@
             <li><a href="#section_ver_reclamos" >Ver Reclamos</a></li>
             <li><a href="#section_estadisticas" >Estadísticas</a></li>
             <li><a href="#section_agregar_empresa" >Agregar Empresa</a></li>
-            <li><form><input type="text" placeholder="" maxlength="30"><button><img src="img/Icono de busqueda.png" id="lupabusqueda"></button></form></li>
+            <li><input type="text" maxlength="30"><button><img src="img/Icono de busqueda.png" id="lupabusqueda"></button></li>
         </ul>
     </nav>
     <main>
@@ -47,8 +47,8 @@
                     </select><br>
                     <label for="agregar_reclamos_reclamo">Reclamo: </label>
                     <input type="text" id="agregar_reclamos_reclamo" placeholder="El título es..." maxlength="30"><br>
+                    <textarea type="text" rows="5" cols="70" style="width:450px" placeholder="y tu reclamo es..."></textarea><br>
                 </form>
-                <textarea type="text" rows="5" cols="70" placeholder="y tu reclamo es..."></textarea><br>
                     <button>Agregar</button>
             </div>
         </section>
@@ -81,7 +81,7 @@
                 <h2>Estadísticas</h2>
                 <h3>Empresas Seleccionadas</h3>
                 <div class="seleccion_letra">
-                    <button>A</button><button>T</button><button>*</button>
+                    <button>A</button><button class="selected">T</button><button>*</button>
                 </div>
                 <div class="ordenar_nombre">
                     <form><input type="radio" name="orden_nombre" id="orden_creciente" checked><label for="orden_creciente">Orden de nombre creciente</label><input type="radio" name="orden_nombre" id="orden_decreciente"><label for="orden_decreciente">Orden de nombre decreciente</label></form>
@@ -136,9 +136,9 @@
                 <div class="agregar_empresa">
                 <form>
                     <label for="agregar_empresa_nombre">Nombre</label>
-                    <input type="text" id="agregar_empresa_nombre" placeholder="" maxlength="30"><br>
+                    <input type="text" id="agregar_empresa_nombre" maxlength="30"><br>
                     <label for="agregar_empresa_direccion">Dirección</label>
-                    <input type="text" id="agregar_empresa_direccion" placeholder="" maxlength="30"><br>
+                    <input type="text" id="agregar_empresa_direccion" maxlength="30"><br>
                     <label for="agregar_empresa_rubro">Rubro</label>
                     <select id="agregar_empresa_rubro" name="rubro">
                         <option value="agregar_empresa_sd">Sin datos</option>
