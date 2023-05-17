@@ -66,12 +66,12 @@ nav ul li img{
 /* Principal */
 #section_principal{
     background-color:#fe9f79;
-    padding:5px;
+    padding: 5px;
 }
 /* Agregar Reclamos */
 #section_agregar_reclamos{
     background-color: #c49b51;
-    padding: 5px;
+    padding-left: 5px;
 }
 /* Ver Reclamos */
 #section_ver_reclamos{
@@ -104,14 +104,13 @@ nav ul li img{
     margin:10px
 }
 #section_principal button{
-    background: rgb(175,201,87);
     background: linear-gradient(180deg, rgba(175,201,87,1) 0%, rgba(254,159,121,1) 100%);
     justify-content: center;
     align-items: center;
     padding: 15px 20px;
     border-radius: 20px;
-    font-weight: 600;
-    font-size: 20px;
+    font-weight: 500;
+    font-size: 25px;
     cursor: pointer;
 }
 
@@ -128,13 +127,16 @@ nav ul li img{
     grid-area: reclamo;
 }
 .agregar_reclamos input,.agregar_empresa input{
-    width: 292px;
+    width: 242px;
 }
 .agregar_reclamos select,.agregar_empresa select{
-    width: 300px;
+    width: 250px;
 }
 .agregar_reclamos button,.agregar_empresa button{
     margin: 0px 100px;
+}
+.agregar_reclamos button{
+    margin-top: 3px;
 }
 .agregar_reclamos button,.agregar_empresa button,.reclamo button{
     cursor: pointer;
