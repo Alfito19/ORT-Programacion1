@@ -158,8 +158,8 @@ nav ul li img{
     margin:3px;
     cursor: pointer;
 }
-/* .seleccion_letra button:active{ */
-.selected{
+.seleccion_letra button:active,.selected{
+    /* Al agregar JS la clase "selected" dejará de funcionar tal como está funcinando */
     background-color: #32cc30;
     border: solid 2px black;
 }
