@@ -117,11 +117,12 @@ nav ul li img{
 /* Forms agregar empresa y agregar datos (label por un lado, input por otro) */
 .agregar_reclamos form,.agregar_empresa form{
     display: grid;
-    grid-template-columns: 100px auto auto;
-    grid-template-areas: ". . ."
-    ". . ."
-    ". . ."
-    ". reclamo .";
+    grid-template-columns: 100px auto;
+    grid-template-areas: ". ."
+    ". ."
+    ". ."
+    ". reclamo"
+    ". button";
 }
 .agregar_reclamos textarea{
     grid-area: reclamo;
@@ -133,7 +134,8 @@ nav ul li img{
     width: 250px;
 }
 .agregar_reclamos button,.agregar_empresa button{
-    margin: 0px 100px;
+    grid-area: button;
+    width: 70px ;
 }
 .agregar_reclamos button{
     margin-top: 3px;
