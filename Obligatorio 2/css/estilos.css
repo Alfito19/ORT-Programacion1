@@ -1,4 +1,4 @@
-/* Alfonso Saizar - 305968 */
+/* Alfonso Saizar - 306859 */
 
 /* Colores: 
 Verde nav: #afc957
@@ -78,6 +78,9 @@ nav ul li img{
     margin: 15px 0px 0px 5px;
     background-color: #c17650;
 }
+#section_ver_reclamos li{
+    list-style: none;
+}
 .num_reclamo{
     margin: 15px 0px;
 }
@@ -133,9 +136,13 @@ nav ul li img{
 .agregar_reclamos select,.agregar_empresa select{
     width: 250px;
 }
-.agregar_reclamos button,.agregar_empresa button{
+.agregar_reclamos_buttons button{
+    margin-right: 10px;
+}
+.agregar_reclamos_buttons,.agregar_empresa button{
     grid-area: button;
-    width: 70px ;
+    width: 70px;
+    display:flex;
 }
 .agregar_reclamos button{
     margin-top: 3px;
@@ -194,4 +201,8 @@ td,th {
     font-weight: 700;
  }
 
-/* Alfonso Saizar - 305968 */
+.noMostrarEnHTML{
+    display: none;
+}
+
+/* Alfonso Saizar - 306859 */
