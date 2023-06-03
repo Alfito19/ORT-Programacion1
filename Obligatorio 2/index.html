@@ -71,7 +71,7 @@
             <h2>Estadísticas</h2>
             <article>
                 <h3>Empresas Seleccionadas</h3>
-                <div class="seleccion_letra">
+                <div class="seleccion_letra" id="estadisticas_seleccion_letra">
                 </div>
                 <div class="ordenar_nombre">
                     <form><input type="radio" name="orden_nombre" id="orden_creciente" checked><label for="orden_creciente">Orden de nombre creciente</label><input type="radio" name="orden_nombre" id="orden_decreciente"><label for="orden_decreciente">Orden de nombre decreciente</label></form>
@@ -88,7 +88,7 @@
                                 <th>Cantidad</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="estadisticas_table_body">
                             <!-- <tr>
                                 <td></td>
                                 <td></td>
@@ -104,17 +104,17 @@
                 <p>El promedio de las cantidades considerando todos los reclamos de todas las empresas es: 0</p>
                 <p>Total de empresas registradas: 0</p>
             </article>
-            <article class="empresas_sin_reclamos">
+            <article class="empresas_sin_reclamos" >
                 <h3>Empresas sin Reclamos</h3>
-                <!-- <ul>
-                    <li>Alfa (18 de Julio 12345) Rubro: Muebles</li>
-                </ul> -->
+                <ul id="estadisticas_empresas_sin_reclamos">
+                    <li>Aun no hay empresas ingresadas.</li>
+                </ul>
             </article>
             <article>
                 <h3>Rubros con máxima cantidad de reclamos</h3>
-                <!-- <ul>
+                <ul id="estadisticas_empresas_max_reclamos">
                     <li>Viajes: cantidad 4</li>
-                </ul> -->
+                </ul>
             </article>
         </section>
         <!-- Fin "Estadisticas" -->
@@ -131,13 +131,13 @@
                     <input type="text" id="agregar_empresa_direccion" maxlength="30" required>
                     <label for="agregar_empresa_rubro">Rubro</label>
                     <select id="agregar_empresa_rubro" name="rubro" required>
-                        <option value="agregar_empresa_Viajes">Viajes</option>
-                        <option value="agregar_empresa_Restaurante">Restaurante</option>
-                        <option value="agregar_empresa_Bancos">Bancos</option>
-                        <option value="agregar_empresa_Muebles">Muebles</option>
-                        <option value="agregar_empresa_Autos">Autos</option>
-                        <option value="agregar_empresa_Servicios">Servicios</option>
-                        <option value="agregar_empresa_General">General</option>
+                        <option value="Viajes">Viajes</option>
+                        <option value="Restaurante">Restaurante</option>
+                        <option value="Bancos">Bancos</option>
+                        <option value="Muebles">Muebles</option>
+                        <option value="Autos">Autos</option>
+                        <option value="Servicios">Servicios</option>
+                        <option value="General">General</option>
                     </select>
                     <button type="button" id="agregar_empresa_agregar">Agregar</button>
                 </form>

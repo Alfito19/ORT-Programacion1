@@ -1,13 +1,13 @@
 // Alfonso Saizar - 306859
 window.addEventListener('load', inicio);
 
-var listaEmpresas=[];
-var listaReclamos=[];
-var listaReclamosInvertida=[];
+var listaEmpresas = [];
+var listaReclamos = [];
+var listaReclamosInvertida = [];
+var listaRubros = [];
 var hayEmpresas = false;
 
 function inicio(){
-    // document.getElementById("id").addEventListener("click", function)
     document.getElementById("header_principal").addEventListener("click",function(){mostrarSections("section_principal"),mostrarHTML("principal_content")});
     document.getElementById("header_reclamos").addEventListener("click",function(){mostrarSections("section_ver_reclamos")});
     document.getElementById("header_estadisticas").addEventListener("click",function(){mostrarSections("section_estadisticas")});
@@ -16,7 +16,6 @@ function inicio(){
     document.getElementById("agregar_reclamos_volver").addEventListener("click",function(){mostrarSections("section_principal"),mostrarHTML("principal_content")});
     document.getElementById("agregar_reclamos_agregar").addEventListener("click", nuevoReclamo);
     document.getElementById("agregar_empresa_agregar").addEventListener("click", nuevaEmpresa);
-
 
 }
 
@@ -62,7 +61,25 @@ function nuevoReclamo(){
         let nuevoReclamo = new Reclamo(nombre,empresa,reclamo,reclamo_area);
         listaReclamos.push(nuevoReclamo);
         listaReclamosInvertida = invertirLista(listaReclamos);
-        estadisticasInformacionGeneral()
+        for(let i=0;i<listaEmpresas.length;i++){
+            let datos = listaEmpresas[i];
+            if(empresa == datos.EmpresaNombre()){
+                datos.empresa_reclamos.push(nuevoReclamo);
+                
+                rubroDeEmpresa = datos.EmpresaRubro();
+
+                if(listaRubros.rubro == rubroDeEmpresa){
+                    aumentarCantidadRubro()
+                    console.log("se metio al if")
+                }
+                else{
+                    console.log("se metio al else")
+                    let rubro = new Rubros(rubroDeEmpresa);
+                    listaRubros.push(rubro);
+                }
+            }
+        }
+        actualizarEstadisticas();
         mostrarReclamos();
         valida.reset();
     }
@@ -85,15 +102,15 @@ function contador(Nreclamo){
 }
 
 function mostrarReclamos(){
-    let reclamos = document.getElementById("lista_reclamos");
-    reclamos.innerHTML = "";
+    let padre = document.getElementById("lista_reclamos");
+    padre.innerHTML = "";
     let count = listaReclamos.length+1;
     // let listaInversa = listaReclamos.reverse();
     for(let datos of listaReclamosInvertida){
         count--;
         //Creo li
         let newLi = document.createElement("li");
-        reclamos.appendChild(newLi);
+        padre.appendChild(newLi);
         //Creo h3 y su contenido.
         let newH3 = document.createElement("h3");
         let H3text = document.createTextNode("Reclamo No. "+count);
@@ -145,29 +162,70 @@ function nuevaEmpresa(){
         hayEmpresas = true;
         valida.reset();
         actualizarEmpresas(nombre);
-        estadisticasInformacionGeneral()
+        actualizarEstadisticas();
     }
 }
 
 function actualizarEmpresas(nombreEmpresa){
-    let empresa = document.getElementById("agregar_reclamos_empresa");
+    let padre = document.getElementById("agregar_reclamos_empresa");
     let newOption = document.createElement("option");
     newOption.innerHTML = nombreEmpresa;
-    empresa.appendChild(newOption);
+    padre.appendChild(newOption);
 }
 
+// function estadisticasBotonFiltro(){
+//     let padre = document.getElementById("estadisticas_seleccion_letra");
+//     let newButton 
+// }
+
+// function estadisticasActualizarTabla(){
+//     estadisticasBotonFiltro();
+// }
+
 function estadisticasInformacionGeneral(){
-    let informacion = document.getElementById("estadisticas_informacion_general");
-    informacion.innerHTML = "";
+    let padre = document.getElementById("estadisticas_informacion_general");
+    padre.innerHTML = "";
     let newH3 = document.createElement("h3");
     newH3.innerHTML = "Información General"
-    informacion.appendChild(newH3);
+    padre.appendChild(newH3);
     let newP1 = document.createElement("p");
     newP1.innerHTML = "El promedio de las cantidades considerando todos los reclamos de todas las empresas es: "+((listaReclamos.length)/(listaEmpresas.length));
-    console.log((listaReclamos.length)/(listaEmpresas.length))
-    informacion.appendChild(newP1);
+    padre.appendChild(newP1);
     let newP2 = document.createElement("p");
     newP2.innerHTML = "Total empresas registradas: "+listaEmpresas.length;
-    informacion.appendChild(newP2);
+    padre.appendChild(newP2);
+}
+
+function estadisticasEmpresasSinReclamos(){
+    let padre = document.getElementById("estadisticas_empresas_sin_reclamos");
+    padre.innerHTML = "";
+    for(datos of listaEmpresas){
+        if(datos.empresa_reclamos.length == 0){
+            let newLi = document.createElement("li");
+            newLi.innerHTML = datos.empresa_nombre+" ("+datos.empresa_direccion+") Rubro: "+datos.empresa_rubro;
+            padre.appendChild(newLi)
+        }
+    }
+}
+
+function estadisticasMaximoRubro(){
+    let padre = document.getElementById("estadisticas_empresas_max_reclamos");
+    padre.innerHTML = "";
+    for(datos of listaEmpresas){
+        if(datos.empresa_reclamos.length == 0){
+            // let newLi = document.createElement("li");
+            // newLi.innerHTML = datos.empresa_nombre+" ("+datos.empresa_direccion+") Rubro: "+datos.empresa_rubro;
+            // padre.appendChild(newLi)
+        }
+    }
+
+}
+
+function actualizarEstadisticas(){
+    // estadisticasBotonFiltro();
+    // estadisticasActualizarTabla();
+    estadisticasEmpresasSinReclamos();
+    estadisticasInformacionGeneral();
+    estadisticasMaximoRubro();
 }
 // Alfonso Saizar - 306859

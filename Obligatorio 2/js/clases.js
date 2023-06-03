@@ -50,6 +50,28 @@ class Empresa{
         this.empresa_reclamos = [];
     }
 
+    EmpresaNombre(){
+        return this.empresa_nombre;
+    }
+
+    EmpresaRubro(){
+        return this.empresa_rubro;
+    }
+
 }
 
+class Rubros{
+    constructor(rubro){
+        this.rubro = rubro;
+        this.cantidad = 1;
+    }
+
+    TipoRubro(){
+        return this.rubro;
+    }
+    
+    aumentarCantidadRubro(){
+        this.cantidad++;
+    }
+}
 // Alfonso Saizar - 306859
