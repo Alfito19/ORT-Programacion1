@@ -3,7 +3,8 @@ window.addEventListener('load', inicio);
 
 var listaEmpresas=[];
 var listaReclamos=[];
-var hayEmpresas = true;
+var listaReclamosInvertida=[];
+var hayEmpresas = false;
 
 function inicio(){
     // document.getElementById("id").addEventListener("click", function)
@@ -14,6 +15,7 @@ function inicio(){
     document.getElementById("reclamo_agregarTuReclamoAqui").addEventListener("click",agregarReclamoAqui);
     document.getElementById("agregar_reclamos_volver").addEventListener("click",function(){mostrarSections("section_principal"),mostrarHTML("principal_content")});
     document.getElementById("agregar_reclamos_agregar").addEventListener("click", nuevoReclamo);
+    document.getElementById("agregar_empresa_agregar").addEventListener("click", nuevaEmpresa);
 
 
 }
@@ -59,9 +61,22 @@ function nuevoReclamo(){
         let reclamo_area = document.getElementById("agregar_reclamos_reclamo_area").value;
         let nuevoReclamo = new Reclamo(nombre,empresa,reclamo,reclamo_area);
         listaReclamos.push(nuevoReclamo);
+        listaReclamosInvertida = invertirLista(listaReclamos);
+        estadisticasInformacionGeneral()
         mostrarReclamos();
         valida.reset();
     }
+}
+
+function invertirLista(listaInvertir){
+    let cant = listaInvertir.length;
+    for(i=0; i<cant/2;i++){
+        let aux= listaInvertir[i];
+        let j = cant -i -1;
+        listaInvertir[i] = listaInvertir[j];
+        listaInvertir[j] = aux;
+    }
+    return listaInvertir;
 }
 
 function contador(Nreclamo){
@@ -72,8 +87,9 @@ function contador(Nreclamo){
 function mostrarReclamos(){
     let reclamos = document.getElementById("lista_reclamos");
     reclamos.innerHTML = "";
-    let count = listaReclamos.length+1
-    for(let datos of listaReclamos){
+    let count = listaReclamos.length+1;
+    // let listaInversa = listaReclamos.reverse();
+    for(let datos of listaReclamosInvertida){
         count--;
         //Creo li
         let newLi = document.createElement("li");
@@ -86,7 +102,7 @@ function mostrarReclamos(){
         //Creo div
         let newDiv = document.createElement("div");
         newLi.appendChild(newDiv);
-        newDiv.classList.add("reclamo")
+        newDiv.classList.add("reclamo");
         //Creo p1
         let newP1 = document.createElement("p");
         newDiv.appendChild(newP1);
@@ -99,21 +115,59 @@ function mostrarReclamos(){
         let newP3 = document.createElement("p");
         let p3text = document.createTextNode(datos.ReclamoCuerpo());
         newDiv.appendChild(newP3);
-        newP3.appendChild(p3text)
-
+        newP3.appendChild(p3text);
+        //Creo div para contener button y contador
+        let newContainer = document.createElement("div");
+        newContainer.classList.add("buttonYcontador");
+        newDiv.appendChild(newContainer);
         //Creo button
         let newButton = document.createElement("button");
-        newDiv.appendChild(newButton);
+        newContainer.appendChild(newButton);
         newButton.setAttribute('id','reclamo_botton_aMiTambien_'+count);
         newButton.setAttribute('onclick','contador('+count+')');
         newButton.textContent = "¡A mi también me pasó!";
-
         //Creo el contador
         let contadorA = document.createElement("p");
         contadorA.setAttribute('id','contadorAmitambien'+count);
         contadorA.innerHTML = "Contador "+datos.ReclamoContadorAmiTambien();
-        newDiv.appendChild(contadorA);
+        newContainer.appendChild(contadorA);
     }
 }
 
+function nuevaEmpresa(){
+    let valida = document.getElementById("agregar_empresa_form");
+    if(valida.reportValidity()){
+        let nombre = document.getElementById("agregar_empresa_nombre").value;
+        let direccion = document.getElementById("agregar_empresa_direccion").value;
+        let rubro = document.getElementById("agregar_empresa_rubro").value;
+        let nuevaEmpresa = new Empresa(nombre,direccion,rubro);
+        listaEmpresas.push(nuevaEmpresa);
+        hayEmpresas = true;
+        valida.reset();
+        actualizarEmpresas(nombre);
+        estadisticasInformacionGeneral()
+    }
+}
+
+function actualizarEmpresas(nombreEmpresa){
+    let empresa = document.getElementById("agregar_reclamos_empresa");
+    let newOption = document.createElement("option");
+    newOption.innerHTML = nombreEmpresa;
+    empresa.appendChild(newOption);
+}
+
+function estadisticasInformacionGeneral(){
+    let informacion = document.getElementById("estadisticas_informacion_general");
+    informacion.innerHTML = "";
+    let newH3 = document.createElement("h3");
+    newH3.innerHTML = "Información General"
+    informacion.appendChild(newH3);
+    let newP1 = document.createElement("p");
+    newP1.innerHTML = "El promedio de las cantidades considerando todos los reclamos de todas las empresas es: "+((listaReclamos.length)/(listaEmpresas.length));
+    console.log((listaReclamos.length)/(listaEmpresas.length))
+    informacion.appendChild(newP1);
+    let newP2 = document.createElement("p");
+    newP2.innerHTML = "Total empresas registradas: "+listaEmpresas.length;
+    informacion.appendChild(newP2);
+}
 // Alfonso Saizar - 306859

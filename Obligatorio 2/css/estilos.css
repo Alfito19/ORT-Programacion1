@@ -142,7 +142,7 @@ nav ul li img{
 .agregar_reclamos_buttons,.agregar_empresa button{
     grid-area: button;
     width: 70px;
-    display:flex;
+    display: flex;
 }
 .agregar_reclamos button{
     margin-top: 3px;
@@ -199,10 +199,16 @@ td,th {
  }
 .tabla_titulos{
     font-weight: 700;
- }
-
+}
 .noMostrarEnHTML{
     display: none;
 }
-
+.buttonYcontador{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+}
+.buttonYcontador p{
+    margin:0 10px;
+}
 /* Alfonso Saizar - 306859 */

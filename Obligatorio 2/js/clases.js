@@ -13,7 +13,7 @@ class Reclamo{
         this.nombreEmpresa = reclamo_nombreEmpresa;
         this.tituloReclamo = reclamo_titulo;
         this.cuerpoReclamo = reclamo_cuerpo;
-        this.contadorAmiTambien = 0;
+        this.contadorAmiTambien = 1;
     }
     
     ReclamoNombreCliente(){
@@ -47,7 +47,9 @@ class Empresa{
         this.empresa_nombre = empresa_nombre;
         this.empresa_direccion = empresa_direccion;
         this.empresa_rubro = empresa_rubro;
+        this.empresa_reclamos = [];
     }
+
 }
 
 // Alfonso Saizar - 306859
