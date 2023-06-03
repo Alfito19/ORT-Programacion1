@@ -13,16 +13,33 @@ class Reclamo{
         this.nombreEmpresa = reclamo_nombreEmpresa;
         this.tituloReclamo = reclamo_titulo;
         this.cuerpoReclamo = reclamo_cuerpo;
+        this.contadorAmiTambien = 0;
     }
     
-    toString(){
-
+    ReclamoNombreCliente(){
+        return this.nombreCliente;
     }
 
-    mostrarReclamos(){
-        
+    ReclamoTitulo(){
+        return this.tituloReclamo;
     }
-    
+
+    ReclamoNombreEmpresa(){
+        return this.nombreEmpresa;
+    }
+
+    ReclamoCuerpo(){
+        return this.cuerpoReclamo;
+    }
+
+    ReclamoContadorAmiTambien(){
+        return this.contadorAmiTambien;
+    }
+
+    ReclamoContador(){
+        this.contadorAmiTambien++;
+    }
+
 }
 
 class Empresa{
