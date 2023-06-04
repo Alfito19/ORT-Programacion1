@@ -8,11 +8,12 @@ class Sistema{
 }
 
 class Reclamo{
-    constructor(reclamo_nombreCliente, reclamo_nombreEmpresa, reclamo_titulo, reclamo_cuerpo){
+    constructor(reclamo_nombreCliente, reclamo_nombreEmpresa, reclamo_titulo, reclamo_cuerpo,reclamo_rubro){
         this.nombreCliente = reclamo_nombreCliente;
         this.nombreEmpresa = reclamo_nombreEmpresa;
         this.tituloReclamo = reclamo_titulo;
         this.cuerpoReclamo = reclamo_cuerpo;
+        this.rubroReclamo = reclamo_rubro;
         this.contadorAmiTambien = 1;
     }
     
@@ -30,6 +31,10 @@ class Reclamo{
 
     ReclamoCuerpo(){
         return this.cuerpoReclamo;
+    }
+
+    ReclamoRubro(){
+        return this.reclamo_rubro;
     }
 
     ReclamoContadorAmiTambien(){
@@ -60,18 +65,4 @@ class Empresa{
 
 }
 
-class Rubros{
-    constructor(rubro){
-        this.rubro = rubro;
-        this.cantidad = 1;
-    }
-
-    TipoRubro(){
-        return this.rubro;
-    }
-    
-    aumentarCantidadRubro(){
-        this.cantidad++;
-    }
-}
 // Alfonso Saizar - 306859

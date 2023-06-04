@@ -4,8 +4,11 @@ window.addEventListener('load', inicio);
 var listaEmpresas = [];
 var listaReclamos = [];
 var listaReclamosInvertida = [];
-var listaRubros = [];
 var hayEmpresas = false;
+
+var listaRubros = [];
+var rubrosEnUso = [];
+var rubrosEnUsoCant = [];
 
 function inicio(){
     document.getElementById("header_principal").addEventListener("click",function(){mostrarSections("section_principal"),mostrarHTML("principal_content")});
@@ -58,28 +61,22 @@ function nuevoReclamo(){
         let empresa = document.getElementById("agregar_reclamos_empresa").value;
         let reclamo = document.getElementById("agregar_reclamos_reclamo").value;
         let reclamo_area = document.getElementById("agregar_reclamos_reclamo_area").value;
-        let nuevoReclamo = new Reclamo(nombre,empresa,reclamo,reclamo_area);
+        let reclamo_rubro = "";
+        for(let j=0;j<listaEmpresas.length;j++){
+            let datoEmpresa = listaEmpresas[j];
+            if(empresa == datoEmpresa.EmpresaNombre()){
+                reclamo_rubro = datoEmpresa.EmpresaRubro();
+            }
+        }
+        let nuevoReclamo = new Reclamo(nombre,empresa,reclamo,reclamo_area,reclamo_rubro);
         listaReclamos.push(nuevoReclamo);
         listaReclamosInvertida = invertirLista(listaReclamos);
         for(let i=0;i<listaEmpresas.length;i++){
             let datos = listaEmpresas[i];
             if(empresa == datos.EmpresaNombre()){
                 datos.empresa_reclamos.push(nuevoReclamo);
-                
-                rubroDeEmpresa = datos.EmpresaRubro();
-
-                if(listaRubros.rubro == rubroDeEmpresa){
-                    aumentarCantidadRubro()
-                    console.log("se metio al if")
-                }
-                else{
-                    console.log("se metio al else")
-                    let rubro = new Rubros(rubroDeEmpresa);
-                    listaRubros.push(rubro);
-                }
             }
         }
-        actualizarEstadisticas();
         mostrarReclamos();
         valida.reset();
     }
@@ -148,6 +145,7 @@ function mostrarReclamos(){
         contadorA.setAttribute('id','contadorAmitambien'+count);
         contadorA.innerHTML = "Contador "+datos.ReclamoContadorAmiTambien();
         newContainer.appendChild(contadorA);
+        actualizarEstadisticas();
     }
 }
 
@@ -211,14 +209,55 @@ function estadisticasEmpresasSinReclamos(){
 function estadisticasMaximoRubro(){
     let padre = document.getElementById("estadisticas_empresas_max_reclamos");
     padre.innerHTML = "";
-    for(datos of listaEmpresas){
-        if(datos.empresa_reclamos.length == 0){
-            // let newLi = document.createElement("li");
-            // newLi.innerHTML = datos.empresa_nombre+" ("+datos.empresa_direccion+") Rubro: "+datos.empresa_rubro;
-            // padre.appendChild(newLi)
+    //En caso de que haya 0 reclamo:
+    if(listaReclamos.length == 0){
+        let newLi1 = document.createElement("li");
+        newLi1.innerHTML = "Aun no hay reclamos"
+        padre.appendChild(newLi1);
+    }
+    //En caso de que haya 1 reclamo o mas:
+    else{
+        listaRubros = [];
+        rubrosEnUso = [];
+        rubrosEnUsoCant = [];
+        for(let i = 0; i < listaReclamos.length; i++){
+            for(let j = 0; j < listaReclamos[i].ReclamoContadorAmiTambien(); j++){
+                listaRubros.push(listaReclamos[i].rubroReclamo);
+            }
+        }
+        //Ordeno la lista 
+        listaRubros.sort();
+        //Recorro la lista nuevamente analizando cuantos hay de cada uno
+        let aparece = 1;
+        for(let i = 0; i < listaRubros.length; i++){
+            if(listaRubros[i+1] == listaRubros[i]){
+                aparece++;
+            }
+            else{
+                rubrosEnUso.push(listaRubros[i]);
+                rubrosEnUsoCant.push(aparece);
+                aparece = 1;
+            }
+        }
+        //Creo el li para mostrar el mayor.
+        let max1 = Math.max(...rubrosEnUsoCant);
+        let hayMas = true;
+        let newRubrosEnUsoCant = rubrosEnUsoCant;
+        let newRubrosEnUso = rubrosEnUso;
+        while(hayMas){
+            let indiceMax = newRubrosEnUsoCant.indexOf(max1);
+            if(Math.max(...newRubrosEnUsoCant) == max1){
+                let newLi = document.createElement("li");
+                newLi.innerHTML = newRubrosEnUso[indiceMax]+": cantidad "+newRubrosEnUsoCant[indiceMax];
+                padre.appendChild(newLi);
+            }
+            else{
+                break;
+            }
+            newRubrosEnUsoCant.splice(indiceMax,1);
+            newRubrosEnUso.splice(indiceMax,1);
         }
     }
-
 }
 
 function actualizarEstadisticas(){
