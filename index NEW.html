@@ -1,0 +1,150 @@
+<!-- Alfonso Saizar - 306859 -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>P1 - Obl. 1</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="shortcut icon" href="img/Logo-mini.png">
+    <script src="js/clases.js"></script>
+    <script src="js/funciones.js"></script>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><img src="img/Logo.png" alt="Logo"></li>
+            <li><a href="#section_principal" id="header_principal">Principal</a></li>
+            <li><a href="#section_ver_reclamos" id="header_reclamos">Ver Reclamos</a></li>
+            <li><a href="#section_estadisticas" id="header_estadisticas">Estadísticas</a></li>
+            <li><a href="#section_agregar_empresa" id="header_agregar_empresa">Agregar Empresa</a></li>
+            <li><input type="text" maxlength="30"><button><img src="img/Icono_de_busqueda.png" alt="busqueda" id="lupabusqueda"></button></li>
+        </ul>
+    </nav>
+    <main>
+        <!-- Inicio "Principal" -->
+        <section id="section_principal" class="">
+            <h1>Sitio para la gestión de reclamos</h1>
+            <div class="principal" id="principal_content">
+                <h2>Este sitio permite ingresar reclamos o quejas y realizar diversas consultas.</h2>
+                <p>Sitio desarrollado en el curso de Programación I - 1er semestre 2023 - Universidad ORT Uruguay por:</p>
+                <p><a target="_blank" href="img/Foto_Alfonso_Saizar.jpg"><img src="img/Foto_Alfonso_Saizar.jpg" alt="Alfonso"></a> Alfonso Saizar - 306859</p>
+                <div class="button_principal">
+                    <button id="reclamo_agregarTuReclamoAqui">Agrega tu reclamo aquí</button>
+                </div>
+            </div>
+        </section>
+        <!-- Fin "Principal" -->
+
+        <!-- Inicio "Ver reclamos" -->
+        <section id="section_agregar_reclamos" class="noMostrarEnHTML">
+            <h2>Agregar Reclamo</h2>
+            <div class="agregar_reclamos" id="agregar_reclamos">
+                <form id="agregar_reclamos_form">
+                    <label for="agregar_reclamos_nombre">Nombre</label>
+                    <input type="text" id="agregar_reclamos_nombre" required placeholder="Tu nombre..." maxlength="30">
+                    <label for="agregar_reclamos_empresa">Empresa</label>
+                    <select id="agregar_reclamos_empresa" required name="empresa">
+                    </select>
+                    <label for="agregar_reclamos_reclamo">Reclamo: </label>
+                    <input type="text" id="agregar_reclamos_reclamo" required placeholder="El título es..." maxlength="30">
+                    <textarea rows="5" id="agregar_reclamos_reclamo_area" cols="70" style="width:450px" required placeholder="y tu reclamo es..."></textarea>
+                    <div class="agregar_reclamos_buttons">
+                        <button type="button" id="agregar_reclamos_agregar">Agregar</button>
+                        <button type="button" id="agregar_reclamos_volver">Volver</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+        <section id="section_ver_reclamos" class="noMostrarEnHTML">
+            <h2>Reclamos ingresados (los más recientes primero)</h2>
+            <article>
+                <ul id="lista_reclamos">
+                    <h3>Sin datos</h3>
+                </ul>
+            </article>
+        </section>
+        <!-- Fin "Ver reclamos" -->
+
+        <!-- Inicio "Estadisticas" -->
+        <section id="section_estadisticas" class="noMostrarEnHTML">
+            <h2>Estadísticas</h2>
+            <article>
+                <h3>Empresas Seleccionadas</h3>
+                <div class="seleccion_letra" id="estadisticas_seleccion_letra">
+                </div>
+                <div class="ordenar_nombre">
+                    <form><input type="radio" name="orden_nombre" id="orden_creciente" checked><label for="orden_creciente">Orden de nombre creciente</label><input type="radio" name="orden_nombre" id="orden_decreciente"><label for="orden_decreciente">Orden de nombre decreciente</label></form>
+                    <!-- Orden nombre creciente / Orden nombre decreciente -->
+                </div>
+                <div class="tabla_estadisticas">
+                    <table>
+                        <caption>Empresas que empiezan con </caption>
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Dirección</th>
+                                <th>Rubro</th>
+                                <th>Cantidad</th>
+                            </tr>
+                        </thead>
+                        <tbody id="estadisticas_table_body">
+                            <!-- <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr> -->
+                        </tbody>
+                    </table>
+                </div>
+            </article>
+            <article id="estadisticas_informacion_general">
+                <h3>Información General</h3>
+                <p>El promedio de las cantidades considerando todos los reclamos de todas las empresas es: 0</p>
+                <p>Total de empresas registradas: 0</p>
+            </article>
+            <article class="empresas_sin_reclamos" >
+                <h3>Empresas sin Reclamos</h3>
+                <ul id="estadisticas_empresas_sin_reclamos">
+                    <li>Aun no hay empresas ingresadas.</li>
+                </ul>
+            </article>
+            <article>
+                <h3>Rubros con máxima cantidad de reclamos</h3>
+                <ul id="estadisticas_empresas_max_reclamos">
+                    <li>Aun no hay reclamos</li>
+                </ul>
+            </article>
+        </section>
+        <!-- Fin "Estadisticas" -->
+
+        <!-- Inicio "Agregar empresa" -->
+        <section id="section_agregar_empresa" class="noMostrarEnHTML">
+            <h2>Agregar Empresa</h2>
+                <h3>Datos:</h3>
+                <div class="agregar_empresa">
+                <form id="agregar_empresa_form">
+                    <label for="agregar_empresa_nombre">Nombre</label>
+                    <input type="text" id="agregar_empresa_nombre" maxlength="30" required>
+                    <label for="agregar_empresa_direccion">Dirección</label>
+                    <input type="text" id="agregar_empresa_direccion" maxlength="30" required>
+                    <label for="agregar_empresa_rubro">Rubro</label>
+                    <select id="agregar_empresa_rubro" name="rubro" required>
+                        <option value="Viajes">Viajes</option>
+                        <option value="Restaurante">Restaurante</option>
+                        <option value="Bancos">Bancos</option>
+                        <option value="Muebles">Muebles</option>
+                        <option value="Autos">Autos</option>
+                        <option value="Servicios">Servicios</option>
+                        <option value="General">General</option>
+                    </select>
+                    <button type="button" id="agregar_empresa_agregar">Agregar</button>
+                </form>
+            </div>
+        </section>
+        <!-- Fin "Agregar empresa" -->
+    </main>
+</body>
+</html>
+<!-- Alfonso Saizar - 306859 -->
