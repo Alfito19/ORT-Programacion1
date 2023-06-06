@@ -1,9 +1,8 @@
 // Alfonso Saizar - 306859
 window.addEventListener('load', inicio);
 
-var listaEmpresas = [];
-var listaReclamos = [];
-var listaReclamosInvertida = [];
+let sistema = new Sistema();
+
 var hayEmpresas = false;
 
 var listaRubros = [];
@@ -61,56 +60,46 @@ function nuevoReclamo(){
         let empresa = document.getElementById("agregar_reclamos_empresa").value;
         let reclamo = document.getElementById("agregar_reclamos_reclamo").value;
         let reclamo_area = document.getElementById("agregar_reclamos_reclamo_area").value;
-        let reclamo_rubro = "";
-        for(let j=0;j<listaEmpresas.length;j++){
-            let datoEmpresa = listaEmpresas[j];
-            if(empresa == datoEmpresa.EmpresaNombre()){
-                reclamo_rubro = datoEmpresa.EmpresaRubro();
-            }
-        }
-        let nuevoReclamo = new Reclamo(nombre,empresa,reclamo,reclamo_area,reclamo_rubro);
-        listaReclamos.push(nuevoReclamo);
-        listaReclamosInvertida = invertirLista(listaReclamos);
-        for(let i=0;i<listaEmpresas.length;i++){
-            let datos = listaEmpresas[i];
-            if(empresa == datos.EmpresaNombre()){
-                datos.empresa_reclamos.push(nuevoReclamo);
-            }
-        }
+        sistema.agregarReclamo(nombre,empresa,reclamo,reclamo_area);
         mostrarReclamos();
         valida.reset();
     }
 }
 
-function invertirLista(listaInvertir){
-    let cant = listaInvertir.length;
-    for(i=0; i<cant/2;i++){
-        let aux= listaInvertir[i];
-        let j = cant -i -1;
-        listaInvertir[i] = listaInvertir[j];
-        listaInvertir[j] = aux;
+function nuevaEmpresa(){
+    let valida = document.getElementById("agregar_empresa_form");
+    if(valida.reportValidity()){
+        let nombre = document.getElementById("agregar_empresa_nombre").value;
+        let direccion = document.getElementById("agregar_empresa_direccion").value;
+        let rubro = document.getElementById("agregar_empresa_rubro").value;
+        sistema.agregarEmpresa(nombre,direccion,rubro);
+        hayEmpresas = true;
+        valida.reset();
+        let padre = document.getElementById("agregar_reclamos_empresa");
+        let newOption = document.createElement("option");
+        newOption.innerHTML = nombre;
+        padre.appendChild(newOption);
+        actualizarEstadisticas();
     }
-    return listaInvertir;
 }
 
 function contador(Nreclamo){
-    listaReclamos[listaReclamos.length-Nreclamo].ReclamoContador();
+    sistema.listaReclamos[sistema.listaReclamos.length-Nreclamo].ReclamoContador();
     mostrarReclamos();
 }
 
 function mostrarReclamos(){
     let padre = document.getElementById("lista_reclamos");
     padre.innerHTML = "";
-    let count = listaReclamos.length+1;
-    // let listaInversa = listaReclamos.reverse();
-    for(let datos of listaReclamosInvertida){
-        count--;
+    for(let i = sistema.listaReclamos.length; i > 0; i--){
+        let count = sistema.listaReclamos.length-i+1;
+        let indice = i-1;
         //Creo li
         let newLi = document.createElement("li");
         padre.appendChild(newLi);
         //Creo h3 y su contenido.
         let newH3 = document.createElement("h3");
-        let H3text = document.createTextNode("Reclamo No. "+count);
+        let H3text = document.createTextNode("Reclamo No. "+(indice+1));
         newH3.appendChild(H3text);
         newLi.appendChild(newH3);
         //Creo div
@@ -120,14 +109,14 @@ function mostrarReclamos(){
         //Creo p1
         let newP1 = document.createElement("p");
         newDiv.appendChild(newP1);
-        newP1.innerHTML = datos.ReclamoNombreCliente()+": <mark class=mark_naranja>"+datos.ReclamoTitulo()+"</mark>";
+        newP1.innerHTML = sistema.listaReclamos[indice].nombreCliente+": <mark class=mark_naranja>"+sistema.listaReclamos[indice].tituloReclamo+"</mark>";
         //Creo p2
         let newP2 = document.createElement("p");
         newDiv.appendChild(newP2);
-        newP2.innerHTML = "Empresa: <mark class=mark_verde>"+datos.ReclamoNombreEmpresa()+"</mark>";
+        newP2.innerHTML = "Empresa: <mark class=mark_verde>"+sistema.listaReclamos[indice].nombreEmpresa+"</mark>";
         //Creo p3
         let newP3 = document.createElement("p");
-        let p3text = document.createTextNode(datos.ReclamoCuerpo());
+        let p3text = document.createTextNode(sistema.listaReclamos[indice].cuerpoReclamo);
         newDiv.appendChild(newP3);
         newP3.appendChild(p3text);
         //Creo div para contener button y contador
@@ -143,32 +132,10 @@ function mostrarReclamos(){
         //Creo el contador
         let contadorA = document.createElement("p");
         contadorA.setAttribute('id','contadorAmitambien'+count);
-        contadorA.innerHTML = "Contador "+datos.ReclamoContadorAmiTambien();
+        contadorA.innerHTML = "Contador "+sistema.listaReclamos[indice].contadorAmiTambien;
         newContainer.appendChild(contadorA);
         actualizarEstadisticas();
     }
-}
-
-function nuevaEmpresa(){
-    let valida = document.getElementById("agregar_empresa_form");
-    if(valida.reportValidity()){
-        let nombre = document.getElementById("agregar_empresa_nombre").value;
-        let direccion = document.getElementById("agregar_empresa_direccion").value;
-        let rubro = document.getElementById("agregar_empresa_rubro").value;
-        let nuevaEmpresa = new Empresa(nombre,direccion,rubro);
-        listaEmpresas.push(nuevaEmpresa);
-        hayEmpresas = true;
-        valida.reset();
-        actualizarEmpresas(nombre);
-        actualizarEstadisticas();
-    }
-}
-
-function actualizarEmpresas(nombreEmpresa){
-    let padre = document.getElementById("agregar_reclamos_empresa");
-    let newOption = document.createElement("option");
-    newOption.innerHTML = nombreEmpresa;
-    padre.appendChild(newOption);
 }
 
 // function estadisticasBotonFiltro(){
@@ -187,17 +154,17 @@ function estadisticasInformacionGeneral(){
     newH3.innerHTML = "Información General"
     padre.appendChild(newH3);
     let newP1 = document.createElement("p");
-    newP1.innerHTML = "El promedio de las cantidades considerando todos los reclamos de todas las empresas es: "+((listaReclamos.length)/(listaEmpresas.length));
+    newP1.innerHTML = "El promedio de las cantidades considerando todos los reclamos de todas las empresas es: "+Math.round((sistema.listaReclamos.length)/(sistema.listaEmpresas.length));
     padre.appendChild(newP1);
     let newP2 = document.createElement("p");
-    newP2.innerHTML = "Total empresas registradas: "+listaEmpresas.length;
+    newP2.innerHTML = "Total empresas registradas: "+sistema.listaEmpresas.length;
     padre.appendChild(newP2);
 }
 
 function estadisticasEmpresasSinReclamos(){
     let padre = document.getElementById("estadisticas_empresas_sin_reclamos");
     padre.innerHTML = "";
-    for(datos of listaEmpresas){
+    for(datos of sistema.listaEmpresas){
         if(datos.empresa_reclamos.length == 0){
             let newLi = document.createElement("li");
             newLi.innerHTML = datos.empresa_nombre+" ("+datos.empresa_direccion+") Rubro: "+datos.empresa_rubro;
@@ -210,52 +177,31 @@ function estadisticasMaximoRubro(){
     let padre = document.getElementById("estadisticas_empresas_max_reclamos");
     padre.innerHTML = "";
     //En caso de que haya 0 reclamo:
-    if(listaReclamos.length == 0){
+    if(sistema.listaReclamos.length == 0){
         let newLi1 = document.createElement("li");
         newLi1.innerHTML = "Aun no hay reclamos"
         padre.appendChild(newLi1);
     }
     //En caso de que haya 1 reclamo o mas:
     else{
-        listaRubros = [];
-        rubrosEnUso = [];
-        rubrosEnUsoCant = [];
-        for(let i = 0; i < listaReclamos.length; i++){
-            for(let j = 0; j < listaReclamos[i].ReclamoContadorAmiTambien(); j++){
-                listaRubros.push(listaReclamos[i].rubroReclamo);
+        let maxRubros = sistema.cantPorRubro();
+        let mayorValor = 0;
+        let indices = [];
+        for(let i = 1; i <= maxRubros.length-1; i = i+2){
+            if(maxRubros[i+2] >= maxRubros[i]){
+                mayorValor = i+2;
             }
         }
-        //Ordeno la lista 
-        listaRubros.sort();
-        //Recorro la lista nuevamente analizando cuantos hay de cada uno
-        let aparece = 1;
-        for(let i = 0; i < listaRubros.length; i++){
-            if(listaRubros[i+1] == listaRubros[i]){
-                aparece++;
-            }
-            else{
-                rubrosEnUso.push(listaRubros[i]);
-                rubrosEnUsoCant.push(aparece);
-                aparece = 1;
+        for(let i = 1; i <= maxRubros.length-1; i = i+2){
+            if(maxRubros[i] == mayorValor){
+                indices.push(i)
             }
         }
-        //Creo el li para mostrar el mayor.
-        let max1 = Math.max(...rubrosEnUsoCant);
-        let hayMas = true;
-        let newRubrosEnUsoCant = rubrosEnUsoCant;
-        let newRubrosEnUso = rubrosEnUso;
-        while(hayMas){
-            let indiceMax = newRubrosEnUsoCant.indexOf(max1);
-            if(Math.max(...newRubrosEnUsoCant) == max1){
-                let newLi = document.createElement("li");
-                newLi.innerHTML = newRubrosEnUso[indiceMax]+": cantidad "+newRubrosEnUsoCant[indiceMax];
-                padre.appendChild(newLi);
-            }
-            else{
-                break;
-            }
-            newRubrosEnUsoCant.splice(indiceMax,1);
-            newRubrosEnUso.splice(indiceMax,1);
+        for(let i = 0; i < indices.length; i++){
+            let index = indices[i];
+            let newLi2 = document.createElement("li");
+            newLi2.innerHTML = maxRubros[index]+": cantidad "+maxRubros[index+1];
+            padre.appendChild(newLi2);
         }
     }
 }
