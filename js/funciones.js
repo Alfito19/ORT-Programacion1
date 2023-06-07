@@ -154,7 +154,7 @@ function estadisticasInformacionGeneral(){
     newH3.innerHTML = "Información General"
     padre.appendChild(newH3);
     let newP1 = document.createElement("p");
-    newP1.innerHTML = "El promedio de las cantidades considerando todos los reclamos de todas las empresas es: "+Math.round((sistema.listaReclamos.length)/(sistema.listaEmpresas.length));
+    newP1.innerHTML = "El promedio de las cantidades considerando todos los reclamos de todas las empresas es: "+Math.round((sistema.reclamosTotales())/(sistema.listaEmpresas.length));
     padre.appendChild(newP1);
     let newP2 = document.createElement("p");
     newP2.innerHTML = "Total empresas registradas: "+sistema.listaEmpresas.length;
@@ -176,31 +176,16 @@ function estadisticasEmpresasSinReclamos(){
 function estadisticasMaximoRubro(){
     let padre = document.getElementById("estadisticas_empresas_max_reclamos");
     padre.innerHTML = "";
-    //En caso de que haya 0 reclamo:
-    if(sistema.listaReclamos.length == 0){
+    let maxRubros = sistema.cantPorRubro();
+    if(maxRubros.length == 0){
         let newLi1 = document.createElement("li");
         newLi1.innerHTML = "Aun no hay reclamos"
         padre.appendChild(newLi1);
     }
-    //En caso de que haya 1 reclamo o mas:
     else{
-        let maxRubros = sistema.cantPorRubro();
-        let mayorValor = 0;
-        let indices = [];
-        for(let i = 1; i <= maxRubros.length-1; i = i+2){
-            if(maxRubros[i+2] >= maxRubros[i]){
-                mayorValor = i+2;
-            }
-        }
-        for(let i = 1; i <= maxRubros.length-1; i = i+2){
-            if(maxRubros[i] == mayorValor){
-                indices.push(i)
-            }
-        }
-        for(let i = 0; i < indices.length; i++){
-            let index = indices[i];
+        for(let i = 1; i < maxRubros.length; i = i+2){
             let newLi2 = document.createElement("li");
-            newLi2.innerHTML = maxRubros[index]+": cantidad "+maxRubros[index+1];
+            newLi2.innerHTML = maxRubros[i-1]+": cantidad "+maxRubros[i];
             padre.appendChild(newLi2);
         }
     }

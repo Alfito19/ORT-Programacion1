@@ -31,9 +31,23 @@ class Sistema{
         }
     }
 
+    reclamosTotales(){
+        let respuesta = 0;
+        for(let i=0; i < this.listaReclamos.length; i++){
+            for(let j = 0; j < sistema.listaReclamos[i].contadorAmiTambien; j++){
+                respuesta++;
+            } 
+        }
+        return respuesta;
+    }
+
     cantPorRubro(){
+        let respuesta = [];
         let listaRubros = [];
         let rubrosEnUso = [];
+        let indicesMax = [];
+        let indiceMayorcantidad = -1;
+        let maxRubrosCantidad = -1;
         for(let i=0; i < this.listaReclamos.length; i++){
             for(let j = 0; j < sistema.listaReclamos[i].contadorAmiTambien; j++){
                 listaRubros.push(this.listaReclamos[i].rubroReclamo);
@@ -51,8 +65,26 @@ class Sistema{
                 aparece = 1;
             }
         }
-        return rubrosEnUso;
+
+        for(let i = 1; i <= rubrosEnUso.length; i = i+2){
+            if(rubrosEnUso[i] > maxRubrosCantidad){
+                maxRubrosCantidad = rubrosEnUso[i];
+                indiceMayorcantidad = i;
+            }
+        }
+        for(let i = 1; i <= rubrosEnUso.length; i = i+2){
+            if(rubrosEnUso[i] == maxRubrosCantidad){
+                indicesMax.push(i - 1);
+            }
+        }
+        for(let i = 0; i < indicesMax.length; i++){
+            respuesta.push(rubrosEnUso[indicesMax[i]]);
+            respuesta.push(rubrosEnUso[indicesMax[i] + 1]);
+        }
+        return respuesta;
     }
+
+
 
 }
 
