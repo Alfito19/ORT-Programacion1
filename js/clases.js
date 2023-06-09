@@ -41,6 +41,26 @@ class Sistema{
         return respuesta;
     }
 
+    inicialesEmpresas(){
+        let respuesta = ['*'];
+        for(let j = 0; j < this.listaEmpresas.length; j++){
+            let noEsta = true;
+            let inicial = this.listaEmpresas[j].empresa_nombre.charAt(0);
+            for(let i = 0; i < respuesta.length; i++){
+                if(respuesta[i].toUpperCase() == inicial.toUpperCase()){
+                    noEsta = false;
+                }
+            }
+            if(noEsta){
+                inicial = inicial.toUpperCase();
+                respuesta.push(inicial);
+            }
+        }
+        
+        respuesta.sort();
+        return respuesta;
+    }
+
     cantPorRubro(){
         let respuesta = [];
         let listaRubros = [];

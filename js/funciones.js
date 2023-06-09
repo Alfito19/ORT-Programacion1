@@ -138,12 +138,22 @@ function mostrarReclamos(){
     }
 }
 
-// function estadisticasBotonFiltro(){
-//     let padre = document.getElementById("estadisticas_seleccion_letra");
-//     let newButton 
-// }
+function estadisticasBotonFiltro(){
+    let iniciales = sistema.inicialesEmpresas();
+    let padre = document.getElementById("estadisticas_seleccion_letra");
+    padre.innerHTML = "";
+    for(let i = 0; i < iniciales.length; i++){
+        let newButton = document.createElement("button");
+        newButton.innerHTML = iniciales[i];
+        newButton.value = 'filtro_'+iniciales[i];
+        newButton.setAttribute('onclick','estadisticasActualizarTabla('+iniciales[i]+')');
+        padre.appendChild(newButton)
+    }
 
-// function estadisticasActualizarTabla(){
+}
+
+// function estadisticasActualizarTabla(letra){
+//     agregar clase css selected para el boton.
 //     estadisticasBotonFiltro();
 // }
 
@@ -192,7 +202,7 @@ function estadisticasMaximoRubro(){
 }
 
 function actualizarEstadisticas(){
-    // estadisticasBotonFiltro();
+    estadisticasBotonFiltro();
     // estadisticasActualizarTabla();
     estadisticasEmpresasSinReclamos();
     estadisticasInformacionGeneral();
