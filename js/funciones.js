@@ -146,16 +146,22 @@ function estadisticasBotonFiltro(){
         let newButton = document.createElement("button");
         newButton.innerHTML = iniciales[i];
         newButton.value = 'filtro_'+iniciales[i];
-        newButton.setAttribute('onclick','estadisticasActualizarTabla('+iniciales[i]+')');
+        newButton.setAttribute('onclick','estadisticasActualizarTabla("'+iniciales[i]+'")');
         padre.appendChild(newButton)
     }
 
 }
 
-// function estadisticasActualizarTabla(letra){
-//     agregar clase css selected para el boton.
-//     estadisticasBotonFiltro();
-// }
+function estadisticasActualizarTabla(letra){
+    // agregar clase css selected para el boton.
+    let filtro = sistema.filtroEmpresas(letra);
+    let padre = document.getElementById("estadisticas_table_body");
+    padre.innerHTML = "";
+    for(let i = 0; i < filtro.length; i++){
+        console.log(i);
+        //crear elementos de la tabla en base a filtro.nombre y eso...
+    }
+}
 
 function estadisticasInformacionGeneral(){
     let padre = document.getElementById("estadisticas_informacion_general");

@@ -61,6 +61,20 @@ class Sistema{
         return respuesta;
     }
 
+    filtroEmpresas(letra){
+        let respuesta = []
+        for(let i = 0; i < this.listaEmpresas.length; i++){
+            let empresa = this.listaEmpresas[i].empresa_nombre.charAt(0);
+            empresa = empresa.toUpperCase();
+            console.log(empresa);
+            if(empresa == letra){
+                respuesta.push(this.listaEmpresas[i]);
+            }
+        }
+        //if letra == * todos
+        return respuesta;
+    }
+
     cantPorRubro(){
         let respuesta = [];
         let listaRubros = [];
