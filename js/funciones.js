@@ -2,12 +2,7 @@
 window.addEventListener('load', inicio);
 
 let sistema = new Sistema();
-
 var hayEmpresas = false;
-
-var listaRubros = [];
-var rubrosEnUso = [];
-var rubrosEnUsoCant = [];
 
 function inicio(){
     document.getElementById("header_principal").addEventListener("click",function(){mostrarSections("section_principal"),mostrarHTML("principal_content")});
@@ -18,7 +13,6 @@ function inicio(){
     document.getElementById("agregar_reclamos_volver").addEventListener("click",function(){mostrarSections("section_principal"),mostrarHTML("principal_content")});
     document.getElementById("agregar_reclamos_agregar").addEventListener("click", nuevoReclamo);
     document.getElementById("agregar_empresa_agregar").addEventListener("click", nuevaEmpresa);
-
 }
 
 function mostrarHTML(idSection){
@@ -29,16 +23,12 @@ function noMostrarHTML(idSection){
     document.getElementById(idSection).classList.add("noMostrarEnHTML");
 }
 
-function ocultarTodo(){
+function mostrarSections(mostrar){
     noMostrarHTML("section_principal");
     noMostrarHTML("section_agregar_reclamos");
     noMostrarHTML("section_ver_reclamos");
     noMostrarHTML("section_estadisticas");
     noMostrarHTML("section_agregar_empresa");
-}
-
-function mostrarSections(mostrar){
-    ocultarTodo()
     mostrarHTML(mostrar);
 }
 
@@ -145,22 +135,29 @@ function estadisticasBotonFiltro(){
     for(let i = 0; i < iniciales.length; i++){
         let newButton = document.createElement("button");
         newButton.innerHTML = iniciales[i];
-        newButton.value = 'filtro_'+iniciales[i];
+        newButton.setAttribute('id','filtro_'+iniciales[i]);
         newButton.setAttribute('onclick','estadisticasActualizarTabla("'+iniciales[i]+'")');
-        padre.appendChild(newButton)
+        padre.appendChild(newButton);
     }
-
 }
 
 function estadisticasActualizarTabla(letra){
-    // agregar clase css selected para el boton.
+    estadisticasBotonFiltro();
     let filtro = sistema.filtroEmpresas(letra);
     let padre = document.getElementById("estadisticas_table_body");
     padre.innerHTML = "";
     for(let i = 0; i < filtro.length; i++){
-        console.log(i);
-        //crear elementos de la tabla en base a filtro.nombre y eso...
+        let fila = padre.insertRow();
+        let nombre = fila.insertCell();
+        let direccion = fila.insertCell();
+        let rubro = fila.insertCell();
+        let reclamos = fila.insertCell();
+        nombre.innerHTML = filtro[i].empresa_nombre;
+        direccion.innerHTML = filtro[i].empresa_direccion;
+        rubro.innerHTML = filtro[i].empresa_rubro;
+        reclamos.innerHTML = filtro[i].reclamosTotalesEmpresa();
     }
+    document.getElementById('filtro_'+letra).classList.add("selected");
 }
 
 function estadisticasInformacionGeneral(){
@@ -184,7 +181,7 @@ function estadisticasEmpresasSinReclamos(){
         if(datos.empresa_reclamos.length == 0){
             let newLi = document.createElement("li");
             newLi.innerHTML = datos.empresa_nombre+" ("+datos.empresa_direccion+") Rubro: "+datos.empresa_rubro;
-            padre.appendChild(newLi)
+            padre.appendChild(newLi);
         }
     }
 }
@@ -208,10 +205,10 @@ function estadisticasMaximoRubro(){
 }
 
 function actualizarEstadisticas(){
-    estadisticasBotonFiltro();
-    // estadisticasActualizarTabla();
+    estadisticasActualizarTabla("*");
     estadisticasEmpresasSinReclamos();
     estadisticasInformacionGeneral();
     estadisticasMaximoRubro();
 }
+
 // Alfonso Saizar - 306859

@@ -7,12 +7,24 @@ class Sistema{
         this.listaReclamos = [];
     }
 
-    //Metodos Empresas
     agregarEmpresa(nombre,direccion,rubro){
-        let nuevaEmpresa = new Empresa(nombre,direccion,rubro);
-        this.listaEmpresas.push(nuevaEmpresa)
+        let noExiste = true;
+        for(let i = 0; i < this.listaEmpresas.length; i++){
+            if(this.listaEmpresas[i].empresa_nombre == nombre){
+                alert("Empresa ya ingresada")
+                noExiste = false;
+                break;
+            }
+            else{
+                noExiste = true;
+            }
+        }
+        if(noExiste || this.listaEmpresas.length == 0){
+            let nuevaEmpresa = new Empresa(nombre,direccion,rubro);
+            this.listaEmpresas.push(nuevaEmpresa);
+        }
     }
-    //Metodos Reclamos
+
     agregarReclamo(nombre,empresa,reclamo,reclamo_area){
         let reclamo_rubro;
         for(let j=0;j<this.listaEmpresas.length;j++){
@@ -25,7 +37,7 @@ class Sistema{
         this.listaReclamos.push(nuevoReclamo);
 
         for(let i=0;i<this.listaEmpresas.length;i++){
-            if(empresa == this.listaEmpresas[i].nombre){
+            if(empresa == this.listaEmpresas[i].empresa_nombre){
                 this.listaEmpresas[i].empresa_reclamos.push(nuevoReclamo);
             }
         }
@@ -56,22 +68,22 @@ class Sistema{
                 respuesta.push(inicial);
             }
         }
-        
         respuesta.sort();
         return respuesta;
     }
 
     filtroEmpresas(letra){
-        let respuesta = []
+        let respuesta = [];
         for(let i = 0; i < this.listaEmpresas.length; i++){
             let empresa = this.listaEmpresas[i].empresa_nombre.charAt(0);
             empresa = empresa.toUpperCase();
-            console.log(empresa);
-            if(empresa == letra){
+            if(letra == "*"){
+                respuesta.push(this.listaEmpresas[i]);
+            }
+            else if(empresa == letra){
                 respuesta.push(this.listaEmpresas[i]);
             }
         }
-        //if letra == * todos
         return respuesta;
     }
 
@@ -99,7 +111,6 @@ class Sistema{
                 aparece = 1;
             }
         }
-
         for(let i = 1; i <= rubrosEnUso.length; i = i+2){
             if(rubrosEnUso[i] > maxRubrosCantidad){
                 maxRubrosCantidad = rubrosEnUso[i];
@@ -117,9 +128,6 @@ class Sistema{
         }
         return respuesta;
     }
-
-
-
 }
 
 class Reclamo{
@@ -136,7 +144,6 @@ class Reclamo{
     ReclamoContador(){
         this.contadorAmiTambien++;
     }
-
 }
 
 class Empresa{
@@ -147,6 +154,13 @@ class Empresa{
         this.empresa_reclamos = [];
     }
 
+    reclamosTotalesEmpresa(){
+        let respuesta = 0;
+        for(let i = 0; i < this.empresa_reclamos.length; i++){
+            respuesta += this.empresa_reclamos[i].contadorAmiTambien;
+        }
+        return respuesta;
+    }
 }
 
 // Alfonso Saizar - 306859
