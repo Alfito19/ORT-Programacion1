@@ -87,6 +87,30 @@ class Sistema{
         return respuesta;
     }
 
+    busquedaEnReclamo(busqueda){
+        let respuesta = [];
+        if(busqueda == ""){
+            respuesta = this.listaReclamos;
+        }
+        else{
+            for(let i = 0; i < this.listaReclamos.length; i++){
+                if(this.listaReclamos[i].nombreCliente.toUpperCase().includes(busqueda.toUpperCase())){
+                    respuesta.push(this.listaReclamos[i]);
+                }
+                else if(this.listaReclamos[i].nombreEmpresa.toUpperCase().includes(busqueda.toUpperCase())){
+                    respuesta.push(this.listaReclamos[i]);
+                }
+                else if(this.listaReclamos[i].tituloReclamo.toUpperCase().includes(busqueda.toUpperCase())){
+                    respuesta.push(this.listaReclamos[i]);
+                }
+                else if(this.listaReclamos[i].cuerpoReclamo.toUpperCase().includes(busqueda.toUpperCase())){
+                    respuesta.push(this.listaReclamos[i]);
+                }
+            }
+        }
+        return respuesta;
+    }
+    
     cantPorRubro(){
         let respuesta = [];
         let listaRubros = [];

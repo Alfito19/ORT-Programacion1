@@ -13,6 +13,7 @@ function inicio(){
     document.getElementById("agregar_reclamos_volver").addEventListener("click",function(){mostrarSections("section_principal"),mostrarHTML("principal_content")});
     document.getElementById("agregar_reclamos_agregar").addEventListener("click", nuevoReclamo);
     document.getElementById("agregar_empresa_agregar").addEventListener("click", nuevaEmpresa);
+    document.getElementById("lupabusqueda").addEventListener("click", filtroBusqueda);
 }
 
 function mostrarHTML(idSection){
@@ -43,6 +44,13 @@ function agregarReclamoAqui(){
     }
 }
 
+function filtroBusqueda(){
+    busqueda = document.getElementById("textobusqueda");
+    mostrarReclamos(sistema.busquedaEnReclamo(busqueda.value));
+    mostrarSections("section_ver_reclamos")
+    busqueda.innerHTML = "";
+}
+
 function nuevoReclamo(){
     let valida = document.getElementById("agregar_reclamos_form");
     if(valida.reportValidity()){
@@ -51,8 +59,8 @@ function nuevoReclamo(){
         let reclamo = document.getElementById("agregar_reclamos_reclamo").value;
         let reclamo_area = document.getElementById("agregar_reclamos_reclamo_area").value;
         sistema.agregarReclamo(nombre,empresa,reclamo,reclamo_area);
-        mostrarReclamos();
         valida.reset();
+        mostrarReclamos(sistema.listaReclamos);
     }
 }
 
@@ -75,21 +83,21 @@ function nuevaEmpresa(){
 
 function contador(Nreclamo){
     sistema.listaReclamos[sistema.listaReclamos.length-Nreclamo].ReclamoContador();
-    mostrarReclamos();
+    mostrarReclamos(sistema.listaReclamos);
 }
 
-function mostrarReclamos(){
+function mostrarReclamos(listaReclamosAMostrar){
     let padre = document.getElementById("lista_reclamos");
     padre.innerHTML = "";
-    for(let i = sistema.listaReclamos.length; i > 0; i--){
-        let count = sistema.listaReclamos.length-i+1;
+    for(let i = listaReclamosAMostrar.length; i > 0; i--){
+        let count = listaReclamosAMostrar.length-i+1;
         let indice = i-1;
         //Creo li
         let newLi = document.createElement("li");
         padre.appendChild(newLi);
         //Creo h3 y su contenido.
         let newH3 = document.createElement("h3");
-        let H3text = document.createTextNode("Reclamo No. "+(indice+1));
+        let H3text = document.createTextNode("Reclamo No. "+listaReclamosAMostrar[indice].idReclamo);
         newH3.appendChild(H3text);
         newLi.appendChild(newH3);
         //Creo div
@@ -99,14 +107,14 @@ function mostrarReclamos(){
         //Creo p1
         let newP1 = document.createElement("p");
         newDiv.appendChild(newP1);
-        newP1.innerHTML = sistema.listaReclamos[indice].nombreCliente+": <mark class=mark_naranja>"+sistema.listaReclamos[indice].tituloReclamo+"</mark>";
+        newP1.innerHTML = listaReclamosAMostrar[indice].nombreCliente+": <mark class=mark_naranja>"+listaReclamosAMostrar[indice].tituloReclamo+"</mark>";
         //Creo p2
         let newP2 = document.createElement("p");
         newDiv.appendChild(newP2);
-        newP2.innerHTML = "Empresa: <mark class=mark_verde>"+sistema.listaReclamos[indice].nombreEmpresa+"</mark>";
+        newP2.innerHTML = "Empresa: <mark class=mark_verde>"+listaReclamosAMostrar[indice].nombreEmpresa+"</mark>";
         //Creo p3
         let newP3 = document.createElement("p");
-        let p3text = document.createTextNode(sistema.listaReclamos[indice].cuerpoReclamo);
+        let p3text = document.createTextNode(listaReclamosAMostrar[indice].cuerpoReclamo);
         newDiv.appendChild(newP3);
         newP3.appendChild(p3text);
         //Creo div para contener button y contador
@@ -122,7 +130,7 @@ function mostrarReclamos(){
         //Creo el contador
         let contadorA = document.createElement("p");
         contadorA.setAttribute('id','contadorAmitambien'+count);
-        contadorA.innerHTML = "Contador "+sistema.listaReclamos[indice].contadorAmiTambien;
+        contadorA.innerHTML = "Contador "+listaReclamosAMostrar[indice].contadorAmiTambien;
         newContainer.appendChild(contadorA);
         actualizarEstadisticas();
     }
@@ -144,6 +152,12 @@ function estadisticasBotonFiltro(){
 function estadisticasActualizarTabla(letra){
     estadisticasBotonFiltro();
     let filtro = sistema.filtroEmpresas(letra);
+    // if(valor de radio es creciente){
+    filtro.sort(estadisticasSortCreciente);
+    // }
+    // else if(valor de radio es decreciente){
+        filtro.sort(estadisticasSortDecreciente);
+    // }
     let padre = document.getElementById("estadisticas_table_body");
     padre.innerHTML = "";
     for(let i = 0; i < filtro.length; i++){
@@ -183,6 +197,30 @@ function estadisticasEmpresasSinReclamos(){
             newLi.innerHTML = datos.empresa_nombre+" ("+datos.empresa_direccion+") Rubro: "+datos.empresa_rubro;
             padre.appendChild(newLi);
         }
+    }
+}
+
+function estadisticasSortDecreciente(a, b){
+    if(sistema.listaEmpresas.length > 1){
+        if(a.empresa_nombre.toUpperCase() > b.empresa_nombre.toUpperCase()){
+            return -1;
+        }
+        if(a.empresa_nombre.toUpperCase() < b.empresa_nombre.toUpperCase()){
+            return 1;
+        }
+        return 0;
+    }
+}
+
+function estadisticasSortCreciente(a, b){
+    if(sistema.listaEmpresas.length > 1){
+        if(a.empresa_nombre.toUpperCase() < b.empresa_nombre.toUpperCase()){
+            return -1;
+        }
+        if(a.empresa_nombre.toUpperCase() > b.empresa_nombre.toUpperCase()){
+            return 1;
+        }
+        return 0;
     }
 }
 
