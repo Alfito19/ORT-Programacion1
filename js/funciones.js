@@ -3,6 +3,7 @@ window.addEventListener('load', inicio);
 
 let sistema = new Sistema();
 var hayEmpresas = false;
+let filtroLetra = "*";
 
 function inicio(){
     document.getElementById("header_principal").addEventListener("click",function(){mostrarSections("section_principal"),mostrarHTML("principal_content")});
@@ -14,6 +15,7 @@ function inicio(){
     document.getElementById("agregar_reclamos_agregar").addEventListener("click", nuevoReclamo);
     document.getElementById("agregar_empresa_agregar").addEventListener("click", nuevaEmpresa);
     document.getElementById("lupabusqueda").addEventListener("click", filtroBusqueda);
+    document.getElementById("formInputRadio").addEventListener("change", function(){estadisticasActualizarTabla(filtroLetra)});
 }
 
 function mostrarHTML(idSection){
@@ -150,28 +152,32 @@ function estadisticasBotonFiltro(){
 }
 
 function estadisticasActualizarTabla(letra){
-    estadisticasBotonFiltro();
+    filtroLetra = letra;
     let filtro = sistema.filtroEmpresas(letra);
-    // if(valor de radio es creciente){
-    filtro.sort(estadisticasSortCreciente);
-    // }
-    // else if(valor de radio es decreciente){
-        filtro.sort(estadisticasSortDecreciente);
-    // }
-    let padre = document.getElementById("estadisticas_table_body");
-    padre.innerHTML = "";
-    for(let i = 0; i < filtro.length; i++){
-        let fila = padre.insertRow();
-        let nombre = fila.insertCell();
-        let direccion = fila.insertCell();
-        let rubro = fila.insertCell();
-        let reclamos = fila.insertCell();
-        nombre.innerHTML = filtro[i].empresa_nombre;
-        direccion.innerHTML = filtro[i].empresa_direccion;
-        rubro.innerHTML = filtro[i].empresa_rubro;
-        reclamos.innerHTML = filtro[i].reclamosTotalesEmpresa();
+    if(filtro.length > 0){
+        estadisticasBotonFiltro();
+        let sort = document.querySelector('input[name="orden_nombre"]:checked');
+        if(sort.id == "orden_creciente"){
+            filtro.sort(estadisticasSortCreciente);
+        }
+        else if(sort.id == "orden_decreciente"){
+            filtro.sort(estadisticasSortDecreciente);
+        }
+        let padre = document.getElementById("estadisticas_table_body");
+        padre.innerHTML = "";
+        for(let i = 0; i < filtro.length; i++){
+            let fila = padre.insertRow();
+            let nombre = fila.insertCell();
+            let direccion = fila.insertCell();
+            let rubro = fila.insertCell();
+            let reclamos = fila.insertCell();
+            nombre.innerHTML = filtro[i].empresa_nombre;
+            direccion.innerHTML = filtro[i].empresa_direccion;
+            rubro.innerHTML = filtro[i].empresa_rubro;
+            reclamos.innerHTML = filtro[i].reclamosTotalesEmpresa();
+        }
+        document.getElementById('filtro_'+letra).classList.add("selected");
     }
-    document.getElementById('filtro_'+letra).classList.add("selected");
 }
 
 function estadisticasInformacionGeneral(){
@@ -243,7 +249,7 @@ function estadisticasMaximoRubro(){
 }
 
 function actualizarEstadisticas(){
-    estadisticasActualizarTabla("*");
+    estadisticasActualizarTabla(filtroLetra);
     estadisticasEmpresasSinReclamos();
     estadisticasInformacionGeneral();
     estadisticasMaximoRubro();
