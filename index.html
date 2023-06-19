@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <title>P1 - Obl. 1</title>
+    <title>P1 - Obl. 2</title>
     <link rel="stylesheet" href="css/estilos.css">
     <link rel="shortcut icon" href="img/Logo-mini.png">
     <script src="js/clases.js"></script>
@@ -51,6 +51,7 @@
                     <input type="text" id="agregar_reclamos_nombre" required placeholder="Tu nombre..." maxlength="30">
                     <label for="agregar_reclamos_empresa">Empresa</label>
                     <select id="agregar_reclamos_empresa" required name="empresa">
+                        <option value="">Sin datos</option>
                     </select>
                     <label for="agregar_reclamos_reclamo">Reclamo: </label>
                     <input type="text" id="agregar_reclamos_reclamo" required placeholder="El título es..." maxlength="30">
@@ -133,7 +134,7 @@
                     <label for="agregar_empresa_direccion">Dirección</label>
                     <input type="text" id="agregar_empresa_direccion" maxlength="30" required>
                     <label for="agregar_empresa_rubro">Rubro</label>
-                    <select id="agregar_empresa_rubro" name="rubro" required>
+                    <select id="agregar_empresa_rubro" name="rubro">
                         <option value="Viajes">Viajes</option>
                         <option value="Restaurante">Restaurante</option>
                         <option value="Bancos">Bancos</option>
