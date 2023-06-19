@@ -249,7 +249,7 @@ function estadisticasMaximoRubro(){
 }
 
 function actualizarEstadisticas(){
-    estadisticasActualizarTabla(filtroLetra);
+    estadisticasActualizarTabla("*");
     estadisticasEmpresasSinReclamos();
     estadisticasInformacionGeneral();
     estadisticasMaximoRubro();
