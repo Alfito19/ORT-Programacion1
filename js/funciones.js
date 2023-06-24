@@ -69,6 +69,9 @@ function nuevoReclamo(){
 function nuevaEmpresa(){
     let valida = document.getElementById("agregar_empresa_form");
     if(valida.reportValidity()){
+        if(sistema.listaEmpresas.length < 1){
+            document.getElementById("agregar_reclamos_empresa").innerHTML = "";
+        }
         let nombre = document.getElementById("agregar_empresa_nombre").value;
         let direccion = document.getElementById("agregar_empresa_direccion").value;
         let rubro = document.getElementById("agregar_empresa_rubro").value;
